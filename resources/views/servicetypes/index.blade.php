@@ -73,7 +73,7 @@
 	   		@endforeach
 							
 
-			@endcomponent
+		@endcomponent
 
 		{{-- </div> --}}
 

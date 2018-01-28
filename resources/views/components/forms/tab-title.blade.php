@@ -2,7 +2,7 @@
  		 role="presentation">
 
  			<a class="nav-link 
- 				 @isset($active) {{ $active }} @endisset" 
+ 				 @isset($active) {{ $active == $name ? "active" : "" }} @endisset"
  				 data-toggle="tab" 
  				 href="#{{ $name }}" 
  				 aria-controls="{{ $name }}" 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\ServiceType;
+use App\Models\Attribute;
 use App\Http\Requests\ServiceTypes\BasicRequest;
 
 
@@ -81,9 +82,14 @@ class ServiceTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(ServiceType $id)
+    public function edit(ServiceType $serviceType)
     {
-        return view('servicetypes.edit', ['serviceType' => $id ]);
+        $serviceType->load("attributes.attributeType");
+
+        //Set the 
+        //request()->session()->flash('tab', "basic" );
+
+        return view('servicetypes.edit', ['serviceType' => $serviceType ]);
     }
 
     /**
