@@ -34,8 +34,7 @@
 								@slot('title') {{ __("Subir") }} @endslot
 								@slot('route') 
 									{{ url( "/attributes/{$attr->id}/orderUp/service-type/{$serviceType->id}") }}
-								@endslot
-								attributes/{attribute}/orderUp/service-type/{serviceType}
+								@endslot 
 								@slot('icon') wb-dropup @endslot
 							@endcomponent 	
 
@@ -54,3 +53,10 @@
 							
 
 		@endcomponent
+
+
+		@include('servicetypes.edit-attributes-form')
+
+		
+
+

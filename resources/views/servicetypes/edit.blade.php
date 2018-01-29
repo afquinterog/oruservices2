@@ -73,7 +73,7 @@
 
           @endcomponent
 
-          @component('components.forms.tab-item')
+          @component('components.forms.tab-item', [ 'active' => session('tab') ])
               @slot('name') tasks @endslot
               this is the data for the tasks
           @endcomponent

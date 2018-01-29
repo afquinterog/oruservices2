@@ -51,4 +51,12 @@ class ServiceType extends Model
              ->orderBy('attribute_service_type.order', 'asc');
   }
 
+  /**
+  * Service type task's
+  */
+  public function tasks()
+  {
+      return $this->hasMany('App\Models\Task');
+  }
+
 }

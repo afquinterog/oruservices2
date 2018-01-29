@@ -4,7 +4,7 @@
       
     @if ( isset($filters) )
         {{ $filters }} 
-      @endif
+    @endif
     
     </div>
       <div class="col-lg-2">

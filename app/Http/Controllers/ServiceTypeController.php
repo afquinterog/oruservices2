@@ -64,6 +64,27 @@ class ServiceTypeController extends Controller
         return back()->withInput();
     }
 
+    /**
+     * Store an attribute linked with the service type
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeAttribute(Request $request)
+    {
+        
+
+        $serviceType = ServiceType::find( $request->service );
+
+        dd( $serviceType->tasks->first()->name );
+
+        $serviceType->attributes()->attach( $request->attribute );
+
+        $request->session()->flash('status', __('messages.saved_ok'));
+
+        return back()->withInput();
+    }
+
 
     /**
      * Display the specified resource.
@@ -86,10 +107,9 @@ class ServiceTypeController extends Controller
     {
         $serviceType->load("attributes.attributeType");
 
-        //Set the 
-        //request()->session()->flash('tab', "basic" );
+        $attributes = Attribute::list();
 
-        return view('servicetypes.edit', ['serviceType' => $serviceType ]);
+        return view('servicetypes.edit', ['serviceType' => $serviceType, 'attributes' => $attributes ]);
     }
 
     /**

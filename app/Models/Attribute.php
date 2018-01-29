@@ -23,6 +23,14 @@ class Attribute extends Model
       return $this->belongsToMany('App\Models\ServiceType');
   }
 
+  /**
+  * Get attributes list
+  * 
+  */
+  public static function list(){
+  	return Attribute::orderBy('name')->get();
+  }
+
 
   /**
    * Order up the attribute on the service type

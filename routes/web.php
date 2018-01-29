@@ -29,6 +29,9 @@ Route::group([ 'middleware' => 'auth'], function(){
 	Route::post('service-types/store/basic', 'ServiceTypeController@storeBasic');
 	Route::get('service-types/delete/{id}', 'ServiceTypeController@destroy' )->name('service-type-delete');
 
+	Route::post('/service-types/store/attribute', 'ServiceTypeController@storeAttribute');
+	
+
 	//Attributes 
 	Route::get('attributes/{attribute}/orderUp/service-type/{serviceType}', 'AttributeController@orderUp');
 	Route::get('attributes/{attribute}/orderDown/service-type/{serviceType}', 'AttributeController@orderDown');
