@@ -30,11 +30,17 @@ Route::group([ 'middleware' => 'auth'], function(){
 	Route::get('service-types/delete/{id}', 'ServiceTypeController@destroy' )->name('service-type-delete');
 
 	Route::post('/service-types/store/attribute', 'ServiceTypeController@storeAttribute');
+	Route::post('/service-types/store/task', 'ServiceTypeController@storeTask');
 	
 
 	//Attributes 
 	Route::get('attributes/{attribute}/orderUp/service-type/{serviceType}', 'AttributeController@orderUp');
 	Route::get('attributes/{attribute}/orderDown/service-type/{serviceType}', 'AttributeController@orderDown');
+
+	//Tasks 
+	Route::get('tasks/{task}/orderUp/service-type/{serviceType}', 'TaskController@orderUp');
+	Route::get('tasks/{task}/orderDown/service-type/{serviceType}', 'TaskController@orderDown');
+
 
 });
 

@@ -52,11 +52,19 @@ class ServiceType extends Model
   }
 
   /**
+  * The next order of serviceType's task
+  */
+  public function nextOrder()
+  {
+      return $this->tasks()->max('order') + 1;
+  }
+
+  /**
   * Service type task's
   */
   public function tasks()
   {
-      return $this->hasMany('App\Models\Task');
+      return $this->hasMany('App\Models\Task')->orderBY('order');
   }
 
 }

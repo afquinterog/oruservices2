@@ -75,7 +75,9 @@
 
           @component('components.forms.tab-item', [ 'active' => session('tab') ])
               @slot('name') tasks @endslot
-              this is the data for the tasks
+              
+              @include('servicetypes.edit-tasks')
+
           @endcomponent
 
           @component('components.forms.tab-item')

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\ServiceType;
 use App\Models\Attribute;
+use App\Models\Task;
 use App\Http\Requests\ServiceTypes\BasicRequest;
 
 
@@ -76,11 +77,34 @@ class ServiceTypeController extends Controller
 
         $serviceType = ServiceType::find( $request->service );
 
-        dd( $serviceType->tasks->first()->name );
-
         $serviceType->attributes()->attach( $request->attribute );
 
         $request->session()->flash('status', __('messages.saved_ok'));
+
+        return back()->withInput();
+    }
+
+    /**
+     * Store an task linked with the service type
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeTask(Request $request)
+    {
+        $serviceType = ServiceType::find($request->service);
+        
+        $task = new Task;
+
+        $task->order = $serviceType->nextOrder();
+
+        $task->fill( $request->all() );
+
+        $serviceType->tasks()->save( $task );
+        
+        $request->session()->flash('status', __('messages.saved_ok'));
+
+        request()->session()->flash('tab', "tasks" );
 
         return back()->withInput();
     }
