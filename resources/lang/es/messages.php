@@ -19,4 +19,12 @@ return [
     //Edit basic information
     'service_types_basic_information' => 'Datos básicos',
 
+    //Attributes
+    'attributes_title' => 'Atributos',
+    'attributes_column_name' => 'Nombre',
+    'attributes_column_status' => 'Activo',
+
+    //Edit basic information
+    'attributes_basic_information' => 'Datos básicos',
+
 ];

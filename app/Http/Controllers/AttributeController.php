@@ -9,14 +9,18 @@ use App\Models\ServiceType;
 
 class AttributeController extends Controller
 {
+    
     /**
-     * Display a listing of the resource.
+     * Display the attribute list 
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $filter = addQueryToString($request->filter);
+        $attributes = Attribute::where('name', 'LIKE', $filter )->paginate(10);
+        $request->flash();
+        return view('attributes.index', ['attributes' => $attributes ]);
     }
 
     /**
@@ -26,7 +30,7 @@ class AttributeController extends Controller
      */
     public function create()
     {
-        //
+        return view('attributes.new');
     }
 
     /**
@@ -38,6 +42,24 @@ class AttributeController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    /**
+     * Store attibute basic information.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeBasic(BasicRequest $request)
+    {
+        
+        $attribute = new Attribute;
+
+        $attribute->saveOrUpdate( $request->all() );
+
+        $request->session()->flash('status', __('messages.saved_ok'));
+
+        return back()->withInput();
     }
 
     /**
