@@ -31,6 +31,17 @@ class Attribute extends Model
   	return Attribute::orderBy('name')->get();
   }
 
+  /**
+   * Save or update the model information
+   *
+   * @param array $data 
+   */
+  public function saveOrUpdate(array $data)
+  {
+    dd($data);
+    return $this->persist( Attribute::class, $data);    
+  }
+
 
   /**
    * Order up the attribute on the service type

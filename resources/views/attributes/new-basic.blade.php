@@ -31,7 +31,7 @@
               @component('components.forms.form-item-text')
                 @slot('title') Tipo Atributo (DEBE SER UNA LISTA?????) @endslot
                 @slot('placeholder') Tipo de atributo @endslot
-                @slot('name') attribute_type @endslot
+                @slot('name') attribute_type_id @endslot
               @endcomponent
             </div>
           </div>

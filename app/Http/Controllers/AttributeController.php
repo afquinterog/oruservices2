@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Attribute;
 use App\Models\ServiceType;
+use App\Http\Requests\Attributes\BasicRequest;
 
 class AttributeController extends Controller
 {

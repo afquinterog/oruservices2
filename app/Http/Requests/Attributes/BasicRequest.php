@@ -25,7 +25,7 @@ class BasicRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'attribute_type' => 'required',
+            'attribute_type_id' => 'required',
         ];
     }
 
@@ -38,7 +38,7 @@ class BasicRequest extends FormRequest
     {
         return [
             'name.required'  => 'El campo nombre es requerido',
-            'attribute_type.required'  => 'El campo tipo atributo es requerido',
+            'attribute_type_id.required'  => 'El campo tipo atributo es requerido',
         ];
     }
 }
