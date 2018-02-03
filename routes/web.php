@@ -38,6 +38,7 @@ Route::group([ 'middleware' => 'auth'], function(){
 	Route::get('attributes/new', 'AttributeController@create' )->name('attribute-create');
 	Route::get('attributes/{attribute}/orderUp/service-type/{serviceType}', 'AttributeController@orderUp');
 	Route::get('attributes/{attribute}/orderDown/service-type/{serviceType}', 'AttributeController@orderDown');
+	Route::get('attributes/edit/{attribute}', 'AttributeController@edit' )->name('attribute-edit');
 
 
 	Route::post('attributes/store/basic', 'AttributeController@storeBasic');

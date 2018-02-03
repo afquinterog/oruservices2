@@ -14,8 +14,6 @@
 	  @endslot
 
 
-   
-
     @component('components.forms.success') @endcomponent
     
     @component('components.forms.errors') @endcomponent
@@ -27,32 +25,31 @@
 
         @slot('tabTitles')
 
-          @component('components.forms.tab-title')
-            @slot('title') Basicos @endslot
-            @slot('name') basic @endslot
-            @slot('active') active @endslot
-          @endcomponent
+          @component('components.forms.tab-title', [ 'active' => session('tab') ])
+            @slot('title') Atributos @endslot
+            @slot('name') attributes @endslot        
+          @endcomponent 
 
         @endslot 
         
 
         @slot('tabContent')
 
-          @component('components.forms.tab-item')
-              @slot('name') basic @endslot
-              @slot('active') active @endslot
+          @component('components.forms.tab-item',  [ 'active' => session('tab') ])
+              @slot('name') attributes @endslot
               
-              @include('attributes.new-basic')
-               
+              @include('attributes.edit-attribute')
+
           @endcomponent
 
         @endslot
 
 
       @endcomponent
-		
 
-		</div>		
+
+		</div>
+		
 
 	@endcomponent 
 

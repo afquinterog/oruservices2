@@ -11,6 +11,7 @@
 
           {{ method_field('POST') }}
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          <input type="hidden" name="attribute" value="{{ $attribute->id }}">
          
 
           <div class="row">
@@ -20,6 +21,7 @@
                 @slot('title') Nombre @endslot
                 @slot('placeholder') Nombre @endslot
                 @slot('name') name @endslot
+                @slot('value') {{ $attribute->name }} @endslot
               @endcomponent
             </div>
 
@@ -31,6 +33,7 @@
               @component('components.forms.form-item-select', [ 'items' => $attributeTypes ] )
                 @slot('title') Tipo Atributo @endslot
                 @slot('name') attribute_type_id @endslot
+                @slot('value') {{ $attribute->attributeType_id }} @endslot
               @endcomponent
             </div>
 
@@ -47,6 +50,11 @@
                 @slot('name') active @endslot
                 @slot('id') active @endslot
                 @slot('value') 1 @endslot
+
+                @if($attribute->active)  
+                  @slot('checked') checked @endslot
+                @endif
+
               @endcomponent
 
               @component('components.forms.form-item-radio-item')
@@ -54,6 +62,11 @@
                 @slot('name') active @endslot
                 @slot('id') inactive @endslot
                 @slot('value') 0 @endslot
+
+                @if($attribute->active)  
+                  @slot('checked') checked @endslot
+                @endif
+
               @endcomponent
                 
             </div>

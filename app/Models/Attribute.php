@@ -3,9 +3,29 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Traits\Database;
 
 class Attribute extends Model
 {
+
+  use SoftDeletes;
+
+  use Database;
+
+  /**
+   * The attributes that should be mutated to dates.
+   *
+   * @var array
+   */
+  protected $dates = ['deleted_at'];
+
+  /**
+  * The attributes that are mass assignable.
+  *
+  * @var array
+  */
+  protected $fillable = ['name', 'attribute_type_id', 'active'];
 
 	/**
    * The attribute type 
@@ -38,8 +58,7 @@ class Attribute extends Model
    */
   public function saveOrUpdate(array $data)
   {
-    dd($data);
-    return $this->persist( Attribute::class, $data);    
+    return $this->persist( Attribute::class, $data);  
   }
 
 

@@ -13,4 +13,12 @@ class AttributeType extends Model
   {
       return $this->hasMany('App\Models\Attribute');
   }
+
+  /**
+  * Get attribute's types list
+  * 
+  */
+  public static function list(){
+  	return AttributeType::orderBy('name')->get();
+  }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\Attribute;
+use App\Models\AttributeType;
 use App\Models\ServiceType;
 use App\Http\Requests\Attributes\BasicRequest;
 
@@ -32,7 +33,13 @@ class AttributeController extends Controller
      */
     public function create()
     {
-        return view('attributes.new');
+        $attribute = new Attribute;
+        
+        $attribute->load("attributeType");
+
+        $attributeTypes = AttributeType::list();
+
+        return view('attributes.new', ['attributeTypes' => $attributeTypes ]);
     }
 
     /**
@@ -54,7 +61,7 @@ class AttributeController extends Controller
      */
     public function storeBasic(BasicRequest $request)
     {
-        
+        //dd($request->all());
         $attribute = new Attribute;
 
         $attribute->saveOrUpdate( $request->all() );
@@ -81,9 +88,16 @@ class AttributeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Attribute $attribute)
     {
-        //
+
+        $attribute->load("attributeType");
+
+        //dd('attributo:'.$attribute);
+
+        $attributeTypes = AttributeType::list();
+
+        return view('attributes.edit', ['attribute' => $attribute, 'attributeTypes' => $attributeTypes ]);
     }
 
     /**
