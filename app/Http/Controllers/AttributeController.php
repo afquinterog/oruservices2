@@ -120,7 +120,12 @@ class AttributeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Attribute::destroy( $id );
+
+        request()->session()->flash('status', __('messages.deleted_ok'));
+
+        return back()->withInput();
+
     }
 
     /**

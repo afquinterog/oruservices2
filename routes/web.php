@@ -39,6 +39,7 @@ Route::group([ 'middleware' => 'auth'], function(){
 	Route::get('attributes/{attribute}/orderUp/service-type/{serviceType}', 'AttributeController@orderUp');
 	Route::get('attributes/{attribute}/orderDown/service-type/{serviceType}', 'AttributeController@orderDown');
 	Route::get('attributes/edit/{attribute}', 'AttributeController@edit' )->name('attribute-edit');
+	Route::get('attributes/delete/{id}', 'AttributeController@destroy' )->name('attribute-delete');
 
 
 	Route::post('attributes/store/basic', 'AttributeController@storeBasic');
