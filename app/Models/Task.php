@@ -128,8 +128,8 @@ class Task extends Model
 	function switchItems( $serviceType, $item1, $item2){
 
 		$serviceType->tasks()->where('id', $item1->id)
-							 ->first()
-		                     ->update(['order' =>  $item2->order ] );
+												 ->first()
+		            				 ->update(['order' =>  $item2->order ] );
 
 		$serviceType->tasks()->where('id', $item2->id)
 		                     ->first()

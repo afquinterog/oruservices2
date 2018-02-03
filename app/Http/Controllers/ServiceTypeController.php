@@ -74,10 +74,11 @@ class ServiceTypeController extends Controller
     public function storeAttribute(Request $request)
     {
         
-
         $serviceType = ServiceType::find( $request->service );
 
-        $serviceType->attributes()->attach( $request->attribute );
+        $order = $serviceType->nextAttributeOrder();
+
+        $serviceType->attributes()->attach( $request->attribute, ['order' => $order ] );
 
         $request->session()->flash('status', __('messages.saved_ok'));
 
@@ -85,7 +86,7 @@ class ServiceTypeController extends Controller
     }
 
     /**
-     * Store an task linked with the service type
+     * Store a task linked with the service type
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -96,7 +97,7 @@ class ServiceTypeController extends Controller
         
         $task = new Task;
 
-        $task->order = $serviceType->nextOrder();
+        $task->order = $serviceType->nextTaskOrder();
 
         $task->fill( $request->all() );
 
@@ -162,5 +163,23 @@ class ServiceTypeController extends Controller
 
         return back()->withInput();
 
+    }
+
+
+    /**
+    * Delete the attribute on the service type
+    *
+    * @param  int  $attribute
+    * @return \Illuminate\Http\Response
+    */
+    public function deleteAttribute(Attribute $attribute, ServiceType $serviceType)
+    {
+        $serviceType->attributes()->detach( $attribute->id);
+
+        request()->session()->flash('status', __('messages.deleted_ok'));
+
+        request()->session()->flash('tab', "attributes" );
+
+        return back()->withInput();
     }
 }

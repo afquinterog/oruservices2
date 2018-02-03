@@ -36,6 +36,7 @@ Route::group([ 'middleware' => 'auth'], function(){
 	//Attributes 
 	Route::get('attributes/{attribute}/orderUp/service-type/{serviceType}', 'AttributeController@orderUp');
 	Route::get('attributes/{attribute}/orderDown/service-type/{serviceType}', 'AttributeController@orderDown');
+	Route::get('attributes/{attribute}/service-type/{serviceType}/delete', 'ServiceTypeController@deleteAttribute');
 
 	//Tasks 
 	Route::get('tasks/{task}/orderUp/service-type/{serviceType}', 'TaskController@orderUp');

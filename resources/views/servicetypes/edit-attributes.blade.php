@@ -17,19 +17,6 @@
 
 	        	<td class="text-nowrap">
 
-	        		@component('components.table-option')
-								@slot('title') {{ __('messages.edit') }} @endslot
-								@slot('route') {{ url('/service-types/edit/' . $serviceType->id) }} @endslot
-								@slot('icon') wb-wrench @endslot
-							@endcomponent
-
-							@component('components.table-option')
-								@slot('title') {{ __('messages.disable') }} @endslot
-								@slot('route') {{ url('/service-types/delete/' . $serviceType->id) }} @endslot
-								{{-- @slot('route') {{ route('services-type-delete', ['id' => $serviceType->id ]) }} @endslot --}}
-								@slot('icon') wb-close @endslot
-							@endcomponent 	
-
 							@component('components.table-option')
 								@slot('title') {{ __("Subir") }} @endslot
 								@slot('route') 
@@ -44,6 +31,12 @@
 									{{ url( "/attributes/{$attr->id}/orderDown/service-type/{$serviceType->id}") }}
 								@endslot
 								@slot('icon') wb-dropdown @endslot
+							@endcomponent 	
+
+							@component('components.table-option')
+								@slot('title') {{ __('messages.disable') }} @endslot
+								@slot('route') {{ url("attributes/{$attr->id}/service-type/{$serviceType->id}/delete") }} @endslot
+								@slot('icon') wb-close @endslot
 							@endcomponent 	
 
 	        	</td>
