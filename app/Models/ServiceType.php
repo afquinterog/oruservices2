@@ -41,4 +41,41 @@ class ServiceType extends Model
     return $this->persist( ServiceType::class, $data);		
   }
 
+  /**
+  * The attributes related to the service type
+  */
+  public function attributes()
+  {
+      return $this->belongsToMany('App\Models\Attribute')
+             ->withPivot('order')
+             ->orderBy('attribute_service_type.order', 'asc');
+  }
+
+  /**
+  * Service type task's
+  */
+  public function tasks()
+  {
+      return $this->hasMany('App\Models\Task')->orderBy('order');
+  }
+
+  /**
+  * The next order of serviceType's task
+  */
+  public function nextAttributeOrder()
+  {
+
+      return $this->attributes()->get()->last()->pivot->order;
+  }
+
+  /**
+  * The next order of serviceType's task
+  */
+  public function nextTaskOrder()
+  {
+      return $this->tasks()->max('order') + 1 ;
+  }
+
+
+
 }

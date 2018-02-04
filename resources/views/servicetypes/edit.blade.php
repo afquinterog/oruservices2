@@ -27,15 +27,15 @@
 
         @slot('tabTitles')
 
-          @component('components.forms.tab-title')
+          @component('components.forms.tab-title', [ 'active' => session('tab', 'basic') ] )
             @slot('title') Basicos @endslot
             @slot('name') basic @endslot
-            @slot('active') active @endslot
+            @slot('default') true @endslot
           @endcomponent  
 
-          @component('components.forms.tab-title')
+          @component('components.forms.tab-title', [ 'active' => session('tab') ])
             @slot('title') Atributos @endslot
-            @slot('name') attributes @endslot            
+            @slot('name') attributes @endslot        
           @endcomponent 
 
           @component('components.forms.tab-title')
@@ -59,22 +59,25 @@
 
         @slot('tabContent')
 
-          @component('components.forms.tab-item')
+          @component('components.forms.tab-item', [ 'active' => session('tab', 'basic') ])
               @slot('name') basic @endslot
-              @slot('active') active @endslot
 
-                @include('servicetypes.edit-basic')
-                
+              @include('servicetypes.edit-basic')
+
           @endcomponent
 
-          @component('components.forms.tab-item')
+          @component('components.forms.tab-item',  [ 'active' => session('tab') ])
               @slot('name') attributes @endslot
-              this is the data for the attributes
+              
+              @include('servicetypes.edit-attributes')
+
           @endcomponent
 
-          @component('components.forms.tab-item')
+          @component('components.forms.tab-item', [ 'active' => session('tab') ])
               @slot('name') tasks @endslot
-              this is the data for the tasks
+              
+              @include('servicetypes.edit-tasks')
+
           @endcomponent
 
           @component('components.forms.tab-item')
@@ -99,6 +102,7 @@
 		
 
 	@endcomponent 
+
 
 
 @endsection

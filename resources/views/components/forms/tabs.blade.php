@@ -4,9 +4,12 @@
 		{{ $tabTitles}}
 
 	</ul>
-	<div class="tab-content p-t-20">
+	<div class="tab-content ">
 
-		{{ $tabContent}}
+	
+				{{ $tabContent}}
 
 	</div>
 </div>
+
+

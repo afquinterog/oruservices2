@@ -4,12 +4,12 @@
 @section('content')
 
 	@component('components.page')
-	  @slot('title') {{ __('messages.service_types_title') }} @endslot
+	  @slot('title') {{ __('messages.attributes_title') }} @endslot
 
 	  @slot('breadcrumbs')
 	  	<ol class="breadcrumb">
 	        <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
-	        <li class="breadcrumb-item active"><a href="#"> {{ __('messages.service_types_title') }} </a></li>
+	        <li class="breadcrumb-item active"><a href="#"> {{ __('messages.attributes_title') }} </a></li>
 	      </ol>
 	  @endslot
 
@@ -33,18 +33,18 @@
 				@endslot
 
 				@slot('columns')
-					 <th> {{ __('messages.service_types_column_name') }} </th>
-	         <th> {{ __('messages.service_types_column_status') }}</th>
+					 <th> {{ __('messages.attributes_column_name') }} </th>
+	         <th> {{ __('messages.attributes_column_status') }}</th>
 	         <th class="text-nowrap">{{ __('messages.actions') }}</th>
 				@endslot
 
-				@foreach ($serviceTypes as $serviceType)
+				@foreach ($attributes as $attribute)
 
 	        <tr>
-	        	<td>{{ $serviceType->name }}</td>
+	        	<td>{{ $attribute->name }}</td>
 	        	<td>
 	        	
-	        		@if ( $serviceType->active)
+	        		@if ( $attribute->active)
 								<i class="icon wb-check-mini" aria-hidden="true"></i>
 							@else
 								<i class="icon wb-close-mini" aria-hidden="true"></i>
@@ -56,13 +56,13 @@
 
 	        		@component('components.table-option')
 								@slot('title') {{ __('messages.edit') }} @endslot
-								@slot('route') {{ url('/service-types/edit/' . $serviceType->id) }} @endslot
+								@slot('route') {{ url('/attributes/edit/' . $attribute->id) }} @endslot
 								@slot('icon') wb-wrench @endslot
 							@endcomponent
 
 							@component('components.table-option')
 								@slot('title') {{ __('messages.disable') }} @endslot
-								@slot('route') {{ url('/service-types/delete/' . $serviceType->id) }} @endslot
+								@slot('route') {{ url('/attributes/delete/' . $attribute->id) }} @endslot
 								{{-- @slot('route') {{ route('services-type-delete', ['id' => $serviceType->id ]) }} @endslot --}}
 								@slot('icon') wb-close @endslot
 							@endcomponent 	
@@ -78,12 +78,12 @@
 		{{-- </div> --}}
 
 		@component('components.pagination')
-			{{ $serviceTypes->appends(['filter' => isset($filter) ? $filter : "" ])->links() }}
+			{{ $attributes->appends(['filter' => isset($filter) ? $filter : "" ])->links() }}
 		@endcomponent
 
 
 		<div class="site-action" data-plugin="actionBtn">
-			<a href="service-types/new">
+			<a href="attributes/new">
 	    <button type="button" class="site-action-toggle btn-raised btn btn-primary btn-floating">
 	      <i class="front-icon wb-plus animation-scale-up" aria-hidden="true"></i>
 	      <i class="back-icon wb-close animation-scale-up" aria-hidden="true"></i>

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\ServiceType;
+use App\Models\Attribute;
+use App\Models\Task;
 use App\Http\Requests\ServiceTypes\BasicRequest;
 
 
@@ -18,9 +20,12 @@ class ServiceTypeController extends Controller
      */
     public function index(Request $request)
     {
-        $filter = addQueryToString($request->filter);
+        $filter = allQueryFormat( $request->filter );
+
         $serviceTypes = ServiceType::where('name', 'LIKE', $filter )->paginate(10);
+
         $request->flash();
+        
         return view('servicetypes.index', ['serviceTypes' => $serviceTypes ]);
     }
 
@@ -63,6 +68,51 @@ class ServiceTypeController extends Controller
         return back()->withInput();
     }
 
+    /**
+     * Store an attribute linked with the service type
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeAttribute(Request $request)
+    {
+        
+        $serviceType = ServiceType::find( $request->service );
+
+        $order = $serviceType->nextAttributeOrder();
+
+        $serviceType->attributes()->attach( $request->attribute, ['order' => $order ] );
+
+        $request->session()->flash('status', __('messages.saved_ok'));
+
+        return back()->withInput();
+    }
+
+    /**
+     * Store a task linked with the service type
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeTask(Request $request)
+    {
+        $serviceType = ServiceType::find($request->service);
+        
+        $task = new Task;
+
+        $task->order = $serviceType->nextTaskOrder();
+
+        $task->fill( $request->all() );
+
+        $serviceType->tasks()->save( $task );
+        
+        $request->session()->flash('status', __('messages.saved_ok'));
+
+        request()->session()->flash('tab', "tasks" );
+
+        return back()->withInput();
+    }
+
 
     /**
      * Display the specified resource.
@@ -81,9 +131,13 @@ class ServiceTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(ServiceType $id)
+    public function edit(ServiceType $serviceType)
     {
-        return view('servicetypes.edit', ['serviceType' => $id ]);
+        $serviceType->load("attributes.attributeType");
+
+        $attributes = Attribute::list();
+
+        return view('servicetypes.edit', ['serviceType' => $serviceType, 'attributes' => $attributes ]);
     }
 
     /**
@@ -112,5 +166,23 @@ class ServiceTypeController extends Controller
 
         return back()->withInput();
 
+    }
+
+
+    /**
+    * Delete the attribute on the service type
+    *
+    * @param  int  $attribute
+    * @return \Illuminate\Http\Response
+    */
+    public function deleteAttribute(Attribute $attribute, ServiceType $serviceType)
+    {
+        $serviceType->attributes()->detach( $attribute->id);
+
+        request()->session()->flash('status', __('messages.deleted_ok'));
+
+        request()->session()->flash('tab', "attributes" );
+
+        return back()->withInput();
     }
 }

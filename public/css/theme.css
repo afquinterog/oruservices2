@@ -41597,3 +41597,8 @@ div.FixedHeader_Cloned table
 {
     margin: 0 !important;
 }
+
+
+.customTabContent{
+	padding: 5px 30px;
+}
