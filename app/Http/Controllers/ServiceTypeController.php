@@ -20,9 +20,12 @@ class ServiceTypeController extends Controller
      */
     public function index(Request $request)
     {
-        $filter = addQueryToString($request->filter);
+        $filter = allQueryFormat( $request->filter );
+
         $serviceTypes = ServiceType::where('name', 'LIKE', $filter )->paginate(10);
+
         $request->flash();
+        
         return view('servicetypes.index', ['serviceTypes' => $serviceTypes ]);
     }
 

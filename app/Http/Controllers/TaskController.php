@@ -93,7 +93,6 @@ class TaskController extends Controller
     */
     public function orderUp(Task $task, ServiceType $serviceType)
     {
-        
         $task->orderUp( $serviceType );
 
         request()->session()->flash('status', __('messages.saved_ok'));

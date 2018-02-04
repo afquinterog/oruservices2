@@ -45,6 +45,7 @@ mix.styles([
 
       'resources/assets/template/global/vendor/datatables-bootstrap/dataTables.bootstrap.css',
       
+      'resources/assets/template/custom.css',
       ], 
       'public/css/theme.css');
 

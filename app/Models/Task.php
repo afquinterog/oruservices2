@@ -112,7 +112,9 @@ class Task extends Model
 	function getItem($collection, $item, $position){
 
 		return $collection->filter( function($value) use ($item, $position) {
+
 				return $item->order + $position  == $value->order;
+				
 		})->first();
 
 	}

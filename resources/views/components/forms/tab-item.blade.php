@@ -3,5 +3,11 @@
 		 id="{{ $name }}"
 		 role="tabpanel" 
 		 aria-expanded="true">
-	{{ $slot }}
+
+	<div class="customTabContent">
+			
+				{{ $slot }}
+			
+		</div>
+	
 </div>

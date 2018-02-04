@@ -20,7 +20,7 @@ class AttributeController extends Controller
      */
     public function index(Request $request)
     {
-        $filter = addQueryToString($request->filter);
+        $filter = allQueryFormat($request->filter);
 
         $attributes = Attribute::where('name', 'LIKE', $filter )->paginate(10);
 
@@ -58,7 +58,7 @@ class AttributeController extends Controller
         $attribute->saveOrUpdate( $request->all() );
 
         $request->session()->flash('status', __('messages.saved_ok'));
-        
+
         return redirect()->action('AttributeController@index');
     }
 
