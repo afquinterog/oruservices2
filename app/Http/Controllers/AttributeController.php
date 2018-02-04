@@ -3,20 +3,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Attribute;
+use App\Models\AttributeType;
 use App\Models\ServiceType;
+use App\Http\Requests\Attributes\BasicRequest;
 
 class AttributeController extends Controller
 {
+    
     /**
-     * Display a listing of the resource.
+     * Display the attribute list 
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $filter = addQueryToString($request->filter);
+
+        $attributes = Attribute::where('name', 'LIKE', $filter )->paginate(10);
+
+        $request->flash();
+
+        return view('attributes.index', ['attributes' => $attributes ]);
     }
 
     /**
@@ -26,18 +36,41 @@ class AttributeController extends Controller
      */
     public function create()
     {
-        //
+        $attribute = new Attribute;
+        
+        $attribute->load("attributeType");
+
+        $attributeTypes = AttributeType::list();
+
+        return view('attributes.new', ['attributeTypes' => $attributeTypes ]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store attribute information
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $attribute = new Attribute;
+
+        $attribute->saveOrUpdate( $request->all() );
+
+        $request->session()->flash('status', __('messages.saved_ok'));
+        
+        return redirect()->action('AttributeController@index');
+    }
+
+    /**
+     * Store attibute basic information.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeBasic(BasicRequest $request)
+    {
+        
     }
 
     /**
@@ -57,9 +90,14 @@ class AttributeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Attribute $attribute)
     {
-        //
+
+        $attribute->load("attributeType");
+
+        $attributeTypes = AttributeType::list();
+
+        return view('attributes.edit', ['attribute' => $attribute, 'attributeTypes' => $attributeTypes ]);
     }
 
     /**
@@ -82,7 +120,12 @@ class AttributeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Attribute::destroy( $id );
+
+        request()->session()->flash('status', __('messages.deleted_ok'));
+
+        return back()->withInput();
+
     }
 
     /**

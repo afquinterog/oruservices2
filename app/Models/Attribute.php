@@ -3,9 +3,29 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Traits\Database;
 
 class Attribute extends Model
 {
+
+  use SoftDeletes;
+
+  use Database;
+
+  /**
+   * The attributes that should be mutated to dates.
+   *
+   * @var array
+   */
+  protected $dates = ['deleted_at'];
+
+  /**
+  * The attributes that are mass assignable.
+  *
+  * @var array
+  */
+  protected $fillable = ['name', 'attribute_type_id', 'active'];
 
 	/**
    * The attribute type 
@@ -29,6 +49,16 @@ class Attribute extends Model
   */
   public static function list(){
   	return Attribute::orderBy('name')->get();
+  }
+
+  /**
+   * Save or update the model information
+   *
+   * @param array $data 
+   */
+  public function saveOrUpdate(array $data)
+  {
+    return $this->persist( Attribute::class, $data);  
   }
 
 
@@ -110,7 +140,7 @@ class Attribute extends Model
   * 
   * @param App\Models\ServiceType $serviceType The service type
   * @param App\Models\Attribute $item1 
-  * @param App\Models\Attribute $item2  
+  * @param App\Models\Attribute $item2
   * 
   */
   function switchItems( $serviceType, $item1, $item2){

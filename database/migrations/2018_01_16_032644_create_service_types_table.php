@@ -19,6 +19,7 @@ class CreateServiceTypesTable extends Migration
             $table->string('name');
             $table->mediumText('description');
             $table->integer('active');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -25,7 +25,7 @@
 
                 @component('components.menu-item')
                   @slot('title') Atributos @endslot
-                  @slot('route') categories @endslot    
+                  @slot('route') attributes @endslot    
                 @endcomponent
 
             @endcomponent

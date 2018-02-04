@@ -17,6 +17,7 @@ class CreateAttributeTypesTable extends Migration
             $table->increments('id');
             $table->string('code');
             $table->string('name');
+            $table->integer('active');
             $table->string('description');
             $table->timestamps();  // texto, lista, textarea, date
         });

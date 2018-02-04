@@ -18,6 +18,7 @@ class CreateAttributesTable extends Migration
             $table->string('name');
             $table->json('values');
             $table->integer('attribute_types_id');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
