@@ -35,7 +35,7 @@
 
         @slot('tabContent')
 
-          @component('components.forms.tab-item',  [ 'active' => session('tab', 'basic') ])
+          @component('components.forms.tab-item', [ 'active' => session('tab', 'basic') ])
               @slot('name') basic @endslot
               
               @include('attributes.edit-attribute')
