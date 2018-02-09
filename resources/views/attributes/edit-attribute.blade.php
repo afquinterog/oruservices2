@@ -3,7 +3,7 @@
 
   <div class="div-wrap">
 
-    <h4 class="div-title">{{ __('messages.attributes_basic_information') }}</h4>
+    <h4 class="div-title">{{ __('messages.customers_basic_information') }}</h4>
 
 
       <div class="example">

@@ -5,16 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-use App\Models\Attribute;
+use App\Models\Customer;
 use App\Models\AttributeType;
 use App\Models\ServiceType;
-use App\Http\Requests\Attributes\BasicRequest;
+use App\Http\Requests\Customers\BasicRequest;
 
-class AttributeController extends Controller
+class CustomerController extends Controller
 {
     
     /**
-     * Display the attribute list 
+     * Display the customers list 
      *
      * @return \Illuminate\Http\Response
      */
@@ -22,11 +22,11 @@ class AttributeController extends Controller
     {
         $filter = allQueryFormat($request->filter);
 
-        $attributes = Attribute::where('name', 'LIKE', $filter )->paginate(10);
+        $customers = Customer::where('firstname', 'LIKE', $filter )->paginate(10);
 
         $request->flash();
 
-        return view('attributes.index', ['attributes' => $attributes ]);
+        return view('customers.index', ['customers' => $customers ]);
     }
 
     /**
@@ -36,30 +36,30 @@ class AttributeController extends Controller
      */
     public function create()
     {
-        $attribute = new Attribute;
+        $customer = new Customer;
         
-        $attribute->load("attributeType");
+        //$customer->load("attributeType");
 
-        $attributeTypes = AttributeType::list();
+        //$attributeTypes = AttributeType::list();
 
-        return view('attributes.new', ['attributeTypes' => $attributeTypes ]);
+        return view('customers.new');
     }
 
     /**
-     * Store attribute information
+     * Store customer information
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(BasicRequest $request)
     {
-        $attribute = new Attribute;
+        $customer = new Customer;
 
-        $attribute->saveOrUpdate( $request->all() );
+        $customer->saveOrUpdate( $request->all() );
 
         $request->session()->flash('status', __('messages.saved_ok'));
 
-        return redirect()->action('AttributeController@index');
+        return redirect()->action('CustomerController@index');
     }
 
     /**
@@ -90,14 +90,9 @@ class AttributeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Attribute $attribute)
+    public function edit(Customer $customer)
     {
-
-        $attribute->load("attributeType");
-
-        $attributeTypes = AttributeType::list();
-
-        return view('attributes.edit', ['attribute' => $attribute, 'attributeTypes' => $attributeTypes ]);
+        return view('customers.edit', ['customer' => $customer]);
     }
 
     /**
@@ -120,7 +115,7 @@ class AttributeController extends Controller
      */
     public function destroy($id)
     {
-        Attribute::destroy( $id );
+        Customer::destroy( $id );
 
         request()->session()->flash('status', __('messages.deleted_ok'));
 

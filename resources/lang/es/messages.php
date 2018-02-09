@@ -2,16 +2,16 @@
 
 return [
 
-		//generic
-		'actions' => 'Acciones',
-		'edit' => 'Editar',
-		'disable' => 'Desactivar',
-		'delete' => 'Borrar',
+	//generic
+	'actions' => 'Acciones',
+	'edit' => 'Editar',
+	'disable' => 'Desactivar',
+	'delete' => 'Borrar',
 
-		'saved_ok' => 'Datos guardados correctamente.',
-		'deleted_ok' => 'Datos eliminados correctamente',
+	'saved_ok' => 'Datos guardados correctamente.',
+	'deleted_ok' => 'Datos eliminados correctamente',
 
-		//Service types
+	//Service types
     'service_types_title' => 'Tipos de servicios',
     'service_types_column_name' => 'Nombre',
     'service_types_column_status' => 'Activo',
@@ -24,7 +24,14 @@ return [
     'attributes_column_name' => 'Nombre',
     'attributes_column_status' => 'Activo',
 
+    //Customers
+    'customers_title' => 'Clientes',
+    'customers_column_code' => 'Identificación',
+    'customers_column_firstname' => 'Nombres',
+    'customers_column_lastname' => 'Apellidos',
+
     //Edit basic information
     'attributes_basic_information' => 'Datos básicos',
+    'customers_basic_information' => 'Datos básicos',
 
 ];
