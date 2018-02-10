@@ -76,6 +76,13 @@ class ServiceType extends Model
       return $this->tasks()->max('order') + 1 ;
   }
 
+  /**
+  * Get attribute's types list
+  * 
+  */
+  public static function list(){
+    return ServiceType::orderBy('name')->get();
+  }
 
 
 }
