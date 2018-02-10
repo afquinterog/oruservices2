@@ -33,7 +33,7 @@
               @component('components.forms.form-item-select', [ 'items' => $attributeTypes ] )
                 @slot('title') Tipo Atributo @endslot
                 @slot('name') attribute_type_id @endslot
-                @slot('value') {{ $attribute->attributeType_id }} @endslot
+                @slot('value') {{ $attribute->attribute_type_id }} @endslot
               @endcomponent
             </div>
 

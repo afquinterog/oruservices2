@@ -45,6 +45,22 @@ Route::group([ 'middleware' => 'auth'], function(){
 
 	Route::post('attributes/store', 'AttributeController@store');
 
+	//Customers 
+	Route::get('customers', 'CustomerController@index' );
+	Route::get('customers/new', 'CustomerController@create' )->name('customer-create');
+	Route::get('customers/edit/{customer}', 'CustomerController@edit' )->name('customer-edit');
+	Route::get('customers/delete/{id}', 'CustomerController@destroy' )->name('customer-delete');
+
+	Route::post('customers/store', 'CustomerController@store');
+
+	//Branches 
+	Route::get('branches', 'BranchController@index' );
+	Route::get('branches/new', 'BranchController@create' )->name('branch-create');
+	Route::get('branches/edit/{branch}', 'BranchController@edit' )->name('branch-edit');
+	Route::get('branches/delete/{id}', 'BranchController@destroy' )->name('branch-delete');
+
+	Route::post('branches/store', 'BranchController@store');	
+
 	//Tasks 
 	Route::get('tasks/{task}/orderUp/service-type/{serviceType}', 'TaskController@orderUp');
 	Route::get('tasks/{task}/orderDown/service-type/{serviceType}', 'TaskController@orderDown');

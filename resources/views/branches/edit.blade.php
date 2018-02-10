@@ -4,12 +4,12 @@
 @section('content')
 
 	@component('components.page')
-	  @slot('title') {{ __('messages.attributes_title') }} @endslot
+	  @slot('title') {{ __('messages.branches_title') }} @endslot
 
 	  @slot('breadcrumbs')
 	  	<ol class="breadcrumb">
 	        <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
-	        <li class="breadcrumb-item active"><a href="#"> {{ __('messages.attributes_title') }} </a></li>
+	        <li class="breadcrumb-item active"><a href="#"> {{ __('messages.branches_title') }} </a></li>
 	      </ol>
 	  @endslot
 
@@ -26,7 +26,7 @@
         @slot('tabTitles')
 
           @component('components.forms.tab-title', [ 'active' => session('tab', 'basic') ])
-            @slot('title') Atributos @endslot
+            @slot('title') Sucursales @endslot
             @slot('name') basic @endslot        
           @endcomponent 
 
@@ -38,7 +38,7 @@
           @component('components.forms.tab-item', [ 'active' => session('tab', 'basic') ])
               @slot('name') basic @endslot
               
-              @include('attributes.edit-attribute')
+              @include('branches.edit-branch')
 
           @endcomponent
 
