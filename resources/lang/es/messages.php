@@ -30,8 +30,14 @@ return [
     'customers_column_firstname' => 'Nombres',
     'customers_column_lastname' => 'Apellidos',
 
+    //Branches
+    'branches_title' => 'Sucursales',
+    'branches_column_name' => 'Nombre',
+    'branches_column_address' => 'Dirección',
+
     //Edit basic information
     'attributes_basic_information' => 'Datos básicos',
     'customers_basic_information' => 'Datos básicos',
+    'branches_basic_information' => 'Datos básicos',
 
 ];

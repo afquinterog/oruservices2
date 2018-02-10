@@ -3,7 +3,7 @@
 
   <div class="div-wrap">
 
-    <h4 class="div-title">{{ __('messages.customers_basic_information') }}</h4>
+    <h4 class="div-title">{{ __('messages.attributes_basic_information') }}</h4>
 
 
       <div class="example">
@@ -33,7 +33,7 @@
               @component('components.forms.form-item-select', [ 'items' => $attributeTypes ] )
                 @slot('title') Tipo Atributo @endslot
                 @slot('name') attribute_type_id @endslot
-                @slot('value') {{ $attribute->attributeType_id }} @endslot
+                @slot('value') {{ $attribute->attribute_type_id }} @endslot
               @endcomponent
             </div>
 

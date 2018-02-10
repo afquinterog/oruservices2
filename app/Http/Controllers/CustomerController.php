@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\Customer;
-use App\Models\AttributeType;
-use App\Models\ServiceType;
 use App\Http\Requests\Customers\BasicRequest;
 
 class CustomerController extends Controller
@@ -38,10 +36,6 @@ class CustomerController extends Controller
     {
         $customer = new Customer;
         
-        //$customer->load("attributeType");
-
-        //$attributeTypes = AttributeType::list();
-
         return view('customers.new');
     }
 
@@ -121,40 +115,6 @@ class CustomerController extends Controller
 
         return back()->withInput();
 
-    }
-
-    /**
-    * Move the attribute order up
-    *
-    * @param  int  $attribute
-    * @return \Illuminate\Http\Response
-    */
-    public function orderUp(Attribute $attribute, ServiceType $serviceType)
-    {
-        $attribute->orderUp( $serviceType );
-
-        request()->session()->flash('status', __('messages.saved_ok'));
-
-        request()->session()->flash('tab', "attributes" );
-
-        return back()->withInput();
-    }
-
-    /**
-    * Move the attribute order down
-    *
-    * @param  int  $attribute
-    * @return \Illuminate\Http\Response
-    */
-    public function orderDown(Attribute $attribute, ServiceType $serviceType)
-    {
-        $attribute->orderDown( $serviceType );
-
-        request()->session()->flash('status', __('messages.saved_ok'));
-
-        request()->session()->flash('tab', "attributes" );
-
-        return back()->withInput();
     }
 
 }
