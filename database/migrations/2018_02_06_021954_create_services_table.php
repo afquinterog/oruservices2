@@ -23,6 +23,7 @@ class CreateServicesTable extends Migration
             $table->date('request_date');
             $table->date('service_date');
             $table->date('finish_date');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

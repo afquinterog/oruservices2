@@ -24,10 +24,6 @@
               @endcomponent
             </div>
 
-          </div>
-
-          <div class="row">
-
             <div class="form-group col-xs-12 col-md-6">
               @component('components.forms.form-item-text')
                 @slot('title') Nombres @endslot
@@ -50,9 +46,6 @@
               @endcomponent
             </div>
 
-          </div>
-
-          <div class="row">
 
             <div class="form-group col-xs-12 col-md-6">
               @component('components.forms.form-item-text')
@@ -76,9 +69,7 @@
               @endcomponent
             </div>
 
-          </div>
-
-          <div class="row">
+          
 
             <div class="form-group col-xs-12 col-md-6">
               @component('components.forms.form-item-text')

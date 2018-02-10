@@ -1,4 +1,5 @@
 
+
 <label class="form-control-label" 
 			 for="{{ $name }}">
 			{{ $title }}
@@ -8,4 +9,4 @@
 			 id="{{ $name }}" 
 			 name="{{ $name }}" 
 			 placeholder="@isset($placeholder) {{ $placeholder }} @endisset"  
-			 value="@isset($value) {{ $value }} @endisset">
+			 value=" {{ $value }}">
