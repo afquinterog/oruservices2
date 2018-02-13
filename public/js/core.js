@@ -1745,16 +1745,18 @@
           return false;
         }
 
+        // Remove animation to avoid issue with turbolinks
+        
         // let loadingType = 'default';
-        $BODY.animsition({
-          inClass: 'fade-in',
-          inDuration: 800,
-          loading: true,
-          loadingClass: 'loader-overlay',
-          loadingParentElement: 'html',
-          loadingInner: '\n      <div class="loader-content">\n        <div class="loader-index">\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n        </div>\n      </div>',
-          onLoadEvent: true
-        });
+        // $BODY.animsition({
+        //   inClass: 'fade-in',
+        //   inDuration: 800,
+        //   loading: true,
+        //   loadingClass: 'loader-overlay',
+        //   loadingParentElement: 'html',
+        //   loadingInner: '\n      <div class="loader-content">\n        <div class="loader-index">\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n          <div></div>\n        </div>\n      </div>',
+        //   onLoadEvent: true
+        // });
       }
     }]);
     return Site;

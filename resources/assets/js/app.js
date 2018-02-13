@@ -45,3 +45,16 @@ Vue.component('Modal', require('./generics/Modal.vue'));
 
 require('./controllers/admin.js');
 
+
+
+//Execute the template actions with turbolink support
+(function(document, window, $) {
+	'use strict';
+  var Site = window.Site;
+
+  document.addEventListener("turbolinks:load", function() {
+    Site.run();
+  })
+
+})(document, window, jQuery);
+

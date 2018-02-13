@@ -65,7 +65,9 @@ class ServiceType extends Model
   public function nextAttributeOrder()
   {
 
-      return $this->attributes()->get()->last()->pivot->order;
+    return $this->attributes()->get()->count() > 0  ?  
+           $this->attributes()->get()->last()->pivot->order + 1 : 1 ;
+    
   }
 
   /**

@@ -28,7 +28,7 @@
         @slot('tabTitles')
 
           @component('components.forms.tab-title', [ 'active' => session('tab', 'basic') ] )
-            @slot('title') Basicos @endslot
+            @slot('title') Basicos  @endslot
             @slot('name') basic @endslot
             @slot('default') true @endslot
           @endcomponent  
@@ -38,7 +38,7 @@
             @slot('name') attributes @endslot        
           @endcomponent 
 
-          @component('components.forms.tab-title')
+          @component('components.forms.tab-title', [ 'active' => session('tab') ])
             @slot('title') Tareas @endslot
             @slot('name') tasks @endslot            
           @endcomponent  

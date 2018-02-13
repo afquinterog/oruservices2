@@ -40,17 +40,22 @@
   </script>
   <!-- End Init Scripts -->
 
+
+  <script src="/js/theme.js" defer></script>
+  <script src="/js/core.js" defer></script>
+
+  <script src="/js/admin.js" defer></script>
+  <script src="/js/app.js" defer></script>
+
 </head>
-<body class="animsition site-navbar-small " >
+<body class=" site-navbar-small " >
 
 
   <div id="vue-app" style="height: 100%"> 
 
-
-
     <!--[if lt IE 8]>
-          <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-      <![endif]-->
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
 
     @component('partials.topmenu') 
 
@@ -73,34 +78,10 @@
     @endcomponent
 
 
-
   </div>
 
 
-  <script src="/js/theme.js"></script>
-  <script src="/js/core.js"></script>
-
-  <script src="/js/admin.js"></script>
-  <script src="/js/app.js"></script>
-
-  <script>
-  //Config.set('assets', '/assets');
-  </script>
-
-  <script>
-  (function(document, window, $) {
-    'use strict';
-    var Site = window.Site;
-    $(document).ready(function() {
-      Site.run();
-    });
-  })(document, window, jQuery);
-  </script>
-
-
-  
-
-
-
 </body>
+
+
 </html>

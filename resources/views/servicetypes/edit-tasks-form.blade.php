@@ -14,7 +14,7 @@
                 @slot('title') Tarea @endslot
                 @slot('placeholder') Tarea @endslot
                 @slot('name') name @endslot
-                @slot('value') {{ $task->name }} @endslot
+                @slot('value') @endslot
               @endcomponent
             </div>
 

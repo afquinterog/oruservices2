@@ -83,9 +83,11 @@ class ServiceTypeController extends Controller
 
         $serviceType->attributes()->attach( $request->attribute, ['order' => $order ] );
 
-        $request->session()->flash('status', __('messages.saved_ok'));
+        request()->session()->flash('status', __('messages.saved_ok'));
 
-        return back()->withInput();
+        request()->session()->flash( 'tab', "attributes" );
+
+        return redirect()->route('service-type-edit', [ 'serviceType' => $serviceType->id ]);
     }
 
     /**
@@ -106,11 +108,11 @@ class ServiceTypeController extends Controller
 
         $serviceType->tasks()->save( $task );
         
-        $request->session()->flash('status', __('messages.saved_ok'));
+        request()->session()->flash('status', __('messages.saved_ok'));
 
-        request()->session()->flash('tab', "tasks" );
+        request()->session()->flash('tab', 'tasks' );
 
-        return back()->withInput();
+        return redirect()->route('service-type-edit', [ 'serviceType' => $serviceType->id ]);
     }
 
 

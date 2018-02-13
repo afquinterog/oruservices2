@@ -57,9 +57,9 @@ class AttributeController extends Controller
 
         $attribute->saveOrUpdate( $request->all() );
 
-        $request->session()->flash('status', __('messages.saved_ok'));
+        request()->session()->flash('status', __('messages.saved_ok'));
 
-        return redirect()->action('AttributeController@index');
+        return back()->withInput();
     }
 
     /**
@@ -138,11 +138,11 @@ class AttributeController extends Controller
     {
         $attribute->orderUp( $serviceType );
 
-        request()->session()->flash('status', __('messages.saved_ok'));
+        request()->session()->flash("status", __('messages.saved_ok'));
 
-        request()->session()->flash('tab', "attributes" );
+        request()->session()->flash("tab", "attributes" );
 
-        return back()->withInput();
+        return redirect()->route('service-type-edit', [ 'serviceType' => $serviceType->id ]);
     }
 
     /**
@@ -155,11 +155,11 @@ class AttributeController extends Controller
     {
         $attribute->orderDown( $serviceType );
 
-        request()->session()->flash('status', __('messages.saved_ok'));
+        request()->session()->flash("status", __('messages.saved_ok'));
 
-        request()->session()->flash('tab', "attributes" );
+        request()->session()->flash("tab", "attributes" );
 
-        return back()->withInput();
+        return redirect()->route('service-type-edit', [ 'serviceType' => $serviceType->id ]);
     }
 
 }

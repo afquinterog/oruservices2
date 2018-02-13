@@ -4,9 +4,8 @@
 
 			
 				@slot('columns')
-					 <th> {{ "Nombre" }} </th>
-	                 
-	                 <th class="text-nowrap">{{ __('messages.actions') }}</th>
+					<th> {{ "Nombre" }} </th>
+	        <th class="text-nowrap">{{ __('messages.actions') }}</th>
 				@endslot
 
 				@foreach ( $serviceType->tasks as $task)
@@ -16,18 +15,13 @@
 
 	        	<td class="text-nowrap">
 
-	        		<!-- @component('components.table-option')
-								@slot('title') {{ __('messages.edit') }} @endslot
-								@slot('route') {{ url('/service-types/edit/' . $serviceType->id) }} @endslot
-								@slot('icon') wb-wrench @endslot
-							@endcomponent -->
-
-					<!-- @component('components.table-option')
+	        	
+					@component('components.table-option')
 						@slot('title') {{ __('messages.disable') }} @endslot
 						@slot('route') {{ url('/service-types/delete/' . $serviceType->id) }} @endslot
 						{{-- @slot('route') {{ route('services-type-delete', ['id' => $serviceType->id ]) }} @endslot --}}
 						@slot('icon') wb-close @endslot
-					@endcomponent  -->	
+					@endcomponent  
 
 					@component('components.table-option')
 						@slot('title') {{ __("Subir") }} @endslot
