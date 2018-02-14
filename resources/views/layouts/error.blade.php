@@ -41,7 +41,7 @@
   <!-- End Init Scripts -->
 
 </head>
-<body class="animsition page-error page-error-404 layout-full ">
+<body class=" page-error page-error-404 layout-full ">
 
 
   <!--[if lt IE 8]>
