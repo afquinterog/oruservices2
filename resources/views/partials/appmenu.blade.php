@@ -20,15 +20,28 @@
               @slot('title') Empresa @endslot
               @slot('route') javascript::void(0) @endslot           
 
-              @component('components.menu-item')
+              @component('components.menu-item-title-internal')
+
                 @slot('title') Clientes @endslot
-                @slot('route') customers @endslot    
+                @slot('route') javascript::void(0) @endslot     
+
+                  @component('components.menu-item')
+                    @slot('title') Listado @endslot
+                    @slot('route') customers @endslot  
+                  @endcomponent
+
+                   @component('components.menu-item')
+                    @slot('title') Categorias @endslot
+                    @slot('route') customers @endslot  
+                  @endcomponent
+
               @endcomponent
 
               @component('components.menu-item')
                 @slot('title') Sucursales @endslot
                 @slot('route') branches @endslot    
               @endcomponent
+
 
             @endcomponent
 
