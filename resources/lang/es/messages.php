@@ -32,6 +32,7 @@ return [
 
     //Branches
     'branches_title' => 'Sucursales',
+    'branches_column_code' => 'Código',
     'branches_column_name' => 'Nombre',
     'branches_column_address' => 'Dirección',
 

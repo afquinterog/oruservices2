@@ -17,6 +17,18 @@
 
             <div class="form-group col-xs-12 col-md-6">
               @component('components.forms.form-item-text')
+                @slot('title') Código @endslot
+                @slot('placeholder') Código @endslot
+                @slot('name') code @endslot
+              @endcomponent
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="form-group col-xs-12 col-md-6">
+              @component('components.forms.form-item-text')
                 @slot('title') Nombre @endslot
                 @slot('placeholder') Nombre @endslot
                 @slot('name') name @endslot
@@ -32,17 +44,6 @@
                 @slot('title') Dirección @endslot
                 @slot('placeholder') Dirección @endslot
                 @slot('name') address @endslot
-              @endcomponent
-            </div>
-
-          </div>
-
-          <div class="row">
-
-            <div class="form-group col-xs-12 col-md-6">
-              @component('components.forms.form-item-select', [ 'items' => $serviceTypes ] )
-                @slot('title') Tipos de servicio @endslot
-                @slot('name') service_type_id @endslot
               @endcomponent
             </div>
 
