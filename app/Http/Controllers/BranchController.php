@@ -36,13 +36,9 @@ class BranchController extends Controller
     public function create()
     {
 
-    		$branch = new Branch;
+    	$branch = new Branch;
         
-        $branch->load("serviceType");
-
-        $serviceTypes = ServiceType::list();
-
-        return view('branches.new', ['serviceTypes' => $serviceTypes ]);
+        return view('branches.new', []);
     }
 
     /**
@@ -71,11 +67,7 @@ class BranchController extends Controller
     public function edit(Branch $branch)
     {
         
-        $branch->load("serviceType");
-
-        $serviceTypes = ServiceType::list();
-
-        return view('branches.edit', ['branch' => $branch, 'serviceTypes' => $serviceTypes ]);
+        return view('branches.edit', ['branch' => $branch ]);
     }
 
 

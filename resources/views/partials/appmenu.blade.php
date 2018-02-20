@@ -42,7 +42,6 @@
                 @slot('route') branches @endslot    
               @endcomponent
 
-
             @endcomponent
 
 

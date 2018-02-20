@@ -24,9 +24,9 @@ class BasicRequest extends FormRequest
     public function rules()
     {
         return [
+            'code' => 'required',
             'name' => 'required',
             'address' => 'required',
-            'service_type_id' => 'required',
         ];
     }
 
@@ -38,9 +38,10 @@ class BasicRequest extends FormRequest
     public function messages()
     {
         return [
+
+            'code.required'  => 'El campo Código es requerido',
             'name.required'  => 'El campo nombre es requerido',
             'address.required'  => 'El campo dirección es requerido',
-            'service_type_id.required'  => 'El campo tipo de servicio es requerido',
         ];
     }
 }

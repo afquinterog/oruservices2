@@ -86,5 +86,14 @@ class ServiceType extends Model
     return ServiceType::orderBy('name')->get();
   }
 
+  /**
+  * The users that belong to the role.
+  */
+  public function branches()
+  {
+    return $this->belongsToMany('App\Models\Branch');
+  
+  }
+
 
 }

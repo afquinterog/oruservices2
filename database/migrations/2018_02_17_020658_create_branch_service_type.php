@@ -13,7 +13,7 @@ class CreateBranchServiceType extends Migration
      */
     public function up()
     {
-        Schema::table('branch_service_type', function (Blueprint $table) {
+        Schema::create('branch_service_type', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('branch_id');
             $table->integer('service_type_id');

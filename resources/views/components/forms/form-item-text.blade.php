@@ -9,4 +9,4 @@
 			 id="{{ $name }}" 
 			 name="{{ $name }}" 
 			 placeholder="@isset($placeholder) {{ $placeholder }} @endisset"  
-			 value=" {{ $value }}">
+			 value="@isset($value) {{ $value }} @endisset">
