@@ -25,7 +25,7 @@ class Branch extends Model
   *
   * @var array
   */
-  protected $fillable = ['name', 'address', 'service_type_id'];
+  protected $fillable = ['code', 'name', 'address'];
 
   /**
    * Save or update the model information

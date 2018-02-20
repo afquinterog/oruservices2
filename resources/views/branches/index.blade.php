@@ -33,14 +33,17 @@
 				@endslot
 
 				@slot('columns')
+					 <th> {{ __('messages.branches_column_code') }} </th>
 					 <th> {{ __('messages.branches_column_name') }} </th>
 	         <th> {{ __('messages.branches_column_address') }}</th>
 	         <th class="text-nowrap">{{ __('messages.actions') }}</th>
+	         
 				@endslot
 
 				@foreach ($branches as $branch)
 
 	        <tr>
+	        	<td>{{ $branch->code }}</td>
 	        	<td>{{ $branch->name }}</td>
 	        	<td>{{ $branch->address }}</td>
 	        	
