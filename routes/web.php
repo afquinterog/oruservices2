@@ -66,5 +66,13 @@ Route::group([ 'middleware' => 'auth'], function(){
 	Route::get('tasks/{task}/orderDown/service-type/{serviceType}', 'TaskController@orderDown');
 
 
+	//Categories 
+	Route::get('categories', 'CategoryController@index' );
+	Route::get('categories/new', 'CategoryController@create' )->name('category-create');
+	Route::get('categories/edit/{category}', 'CategoryController@edit' )->name('category-edit');
+	Route::get('categories/delete/{id}', 'CategoryController@destroy' )->name('category-delete');
+
+	Route::post('categories/store', 'CategoryController@store');
+
 });
 

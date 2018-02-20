@@ -36,9 +36,16 @@ return [
     'branches_column_name' => 'Nombre',
     'branches_column_address' => 'Dirección',
 
+    //Categories
+    'categories_title' => 'Categorías',
+    'categories_column_code' => 'Código',
+    'categories_column_name' => 'Nombre',
+    'categories_column_description' => 'Descripción',
+
     //Edit basic information
     'attributes_basic_information' => 'Datos básicos',
     'customers_basic_information' => 'Datos básicos',
     'branches_basic_information' => 'Datos básicos',
+    'categories_basic_information' => 'Datos básicos',
 
 ];
