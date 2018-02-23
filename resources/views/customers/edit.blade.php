@@ -42,6 +42,13 @@
 
           @endcomponent
 
+          @component('components.forms.tab-item',  [ 'active' => session('tab') ])
+              @slot('name') categories @endslot
+              
+              @include('customers.edit-categories')
+
+          @endcomponent
+
         @endslot
 
 

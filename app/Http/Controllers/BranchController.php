@@ -67,7 +67,12 @@ class BranchController extends Controller
     public function edit(Branch $branch)
     {
         
-        return view('branches.edit', ['branch' => $branch ]);
+        $branch->load("serviceTypes");
+
+        $serviceTypes = ServiceType::list();
+
+        return view('branches.edit', ['branch' => $branch, 'serviceTypes' => $serviceTypes]);
+
     }
 
 
@@ -85,6 +90,57 @@ class BranchController extends Controller
 
         return back()->withInput();
 
+    }
+
+    /**
+    * Move the branch order up
+    *
+    * @param  int  $branch
+    * @return \Illuminate\Http\Response
+    */
+    public function orderUp(Branch $branch, ServiceType $serviceType)
+    {
+        $branch->orderUp( $serviceType );
+
+        request()->session()->flash("status", __('messages.saved_ok'));
+
+        request()->session()->flash("tab", "branches" );
+
+        return redirect()->route('service-type-edit', [ 'serviceType' => $serviceType->id ]);
+    }
+
+    /**
+    * Move the branch order down
+    *
+    * @param  int  $branch
+    * @return \Illuminate\Http\Response
+    */
+    public function orderDown(Branch $branch, ServiceType $serviceType)
+    {
+        $branch->orderDown( $serviceType );
+
+        request()->session()->flash("status", __('messages.saved_ok'));
+
+        request()->session()->flash("tab", "branches" );
+
+        return redirect()->route('service-type-edit', [ 'serviceType' => $serviceType->id ]);
+    }
+
+    /**
+    * Delete the branch on the service type
+    *
+    * @param  int  $branch
+    * @return \Illuminate\Http\Response
+    */
+    public function deleteBranch(Branch $branch, ServiceType $serviceType)
+    {
+        $serviceType->branches()->detach( $branch->id);
+
+        request()->session()->flash('status', __('messages.deleted_ok'));
+
+        request()->session()->flash('tab', "branches" );
+
+        return back()->withInput();
     }
 
 }

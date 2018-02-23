@@ -25,7 +25,7 @@ class Customer extends Model
   *
   * @var array
   */
-  protected $fillable = ['code', 'firstname', 'lastname', 'email', 'address', 'phone'];
+  protected $fillable = ['code', 'firstname', 'lastname', 'email', 'address', 'phone', 'category_id'];
 
   /**
    * Save or update the model information
@@ -36,4 +36,23 @@ class Customer extends Model
   {
     return $this->persist( Customer::class, $data);  
   }
+
+  /**
+  * The categories related to the customer
+  */
+  public function categories()
+  {
+      return $this->belongsto('App\Models\Category');
+  }
+
+  /**
+  * The next order of serviceType's task
+  */
+  public function nextCategoryOrder()
+  {
+
+    return $this->categories()->max('order') + 1 ;
+    
+  }
+
 }

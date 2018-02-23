@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\Customer;
+use App\Models\Category;
 use App\Http\Requests\Customers\BasicRequest;
 
 class CustomerController extends Controller
@@ -35,8 +36,12 @@ class CustomerController extends Controller
     public function create()
     {
         $customer = new Customer;
+
+        $customer->load("categories");
+
+        $categories = Category::list();
         
-        return view('customers.new');
+        return view('customers.new', ['categories' => $categories ]);
     }
 
     /**
@@ -86,7 +91,11 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        return view('customers.edit', ['customer' => $customer]);
+        $customer->load("categories");
+
+        $categories = Category::list();
+
+        return view('customers.edit', ['customer' => $customer, 'categories' => $categories ]);
     }
 
     /**

@@ -36,4 +36,13 @@ class Category extends Model
   {
     return $this->persist( Category::class, $data);  
   }
+
+  /**
+  * Get categories list
+  * 
+  */
+  public static function list(){
+    return Category::orderBy('name')->get();
+  }
+
 }

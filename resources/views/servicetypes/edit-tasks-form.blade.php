@@ -18,7 +18,7 @@
               @endcomponent
             </div>
 
-        </div>
+          </div>
 
         <div class="row">
           <div class="form-group col-xs-12 col-md-4 offset-md-0">

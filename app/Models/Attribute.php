@@ -61,7 +61,6 @@ class Attribute extends Model
     return $this->persist( Attribute::class, $data);  
   }
 
-
   /**
    * Order up the attribute on the service type
    * 

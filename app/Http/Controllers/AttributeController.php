@@ -162,4 +162,21 @@ class AttributeController extends Controller
         return redirect()->route('service-type-edit', [ 'serviceType' => $serviceType->id ]);
     }
 
+    /**
+    * Delete the attribute on the service type
+    *
+    * @param  int  $attribute
+    * @return \Illuminate\Http\Response
+    */
+    public function deleteAttribute(Attribute $attribute, ServiceType $serviceType)
+    {
+        $serviceType->attributes()->detach( $attribute->id);
+
+        request()->session()->flash('status', __('messages.deleted_ok'));
+
+        request()->session()->flash('tab', "attributes" );
+
+        return back()->withInput();
+    }
+
 }

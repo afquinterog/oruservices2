@@ -31,6 +31,7 @@ Route::group([ 'middleware' => 'auth'], function(){
 	Route::post('service-types/store/basic', 'ServiceTypeController@storeBasic');
 	Route::post('service-types/store/attribute', 'ServiceTypeController@storeAttribute');
 	Route::post('service-types/store/task', 'ServiceTypeController@storeTask');
+	Route::post('service-types/store/branch', 'ServiceTypeController@storeBranch');
 	
 
 	//Attributes 
@@ -38,7 +39,7 @@ Route::group([ 'middleware' => 'auth'], function(){
 	Route::get('attributes/new', 'AttributeController@create' )->name('attribute-create');
 	Route::get('attributes/{attribute}/orderUp/service-type/{serviceType}', 'AttributeController@orderUp');
 	Route::get('attributes/{attribute}/orderDown/service-type/{serviceType}', 'AttributeController@orderDown');
-	Route::get('attributes/{attribute}/service-type/{serviceType}/delete', 'ServiceTypeController@deleteAttribute');
+	Route::get('attributes/{attribute}/service-type/{serviceType}/delete', 'AttributeController@deleteAttribute');
 
 	Route::get('attributes/edit/{attribute}', 'AttributeController@edit' )->name('attribute-edit');
 	Route::get('attributes/delete/{id}', 'AttributeController@destroy' )->name('attribute-delete');
@@ -52,12 +53,16 @@ Route::group([ 'middleware' => 'auth'], function(){
 	Route::get('customers/delete/{id}', 'CustomerController@destroy' )->name('customer-delete');
 
 	Route::post('customers/store', 'CustomerController@store');
+	Route::post('customers/store/category', 'CustomerController@storeCategory');
 
 	//Branches 
 	Route::get('branches', 'BranchController@index' );
 	Route::get('branches/new', 'BranchController@create' )->name('branch-create');
 	Route::get('branches/edit/{branch}', 'BranchController@edit' )->name('branch-edit');
 	Route::get('branches/delete/{id}', 'BranchController@destroy' )->name('branch-delete');
+	Route::get('branches/{branch}/orderUp/service-type/{serviceType}', 'BranchController@orderUp');
+	Route::get('branches/{branch}/orderDown/service-type/{serviceType}', 'BranchController@orderDown');
+	Route::get('branches/{branch}/service-type/{serviceType}/delete', 'BranchController@deleteBranch');
 
 	Route::post('branches/store', 'BranchController@store');	
 
