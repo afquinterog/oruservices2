@@ -57,8 +57,7 @@ class ServiceType extends Model
   public function branches()
   {
       return $this->belongsToMany('App\Models\Branch')
-             ->withPivot('order')
-             ->orderBy('branch_service_type.order', 'asc');
+             ->orderBy('branch_service_type.id', 'asc');
   }
 
   /**

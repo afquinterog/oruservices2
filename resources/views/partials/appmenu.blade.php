@@ -46,6 +46,23 @@
 
 
             @component('components.menu-item-title')
+              @slot('title') Usuarios @endslot
+              @slot('route') javascript::void(0) @endslot           
+
+                @component('components.menu-item')
+                  @slot('title') Listado @endslot
+                  @slot('route') users @endslot    
+                @endcomponent
+
+                @component('components.menu-item')
+                  @slot('title') Roles @endslot
+                  @slot('route') roles @endslot    
+                @endcomponent
+
+            @endcomponent
+
+
+            @component('components.menu-item-title')
               @slot('title') Servicios @endslot
               @slot('route') javascript::void(0) @endslot           
 

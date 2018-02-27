@@ -19,6 +19,7 @@ class CreateTasksTable extends Migration
             $table->string('description')->nullable();
             $table->integer('order');
             $table->integer('service_type_id');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
