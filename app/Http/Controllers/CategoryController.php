@@ -5,15 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-use App\Models\Customer;
 use App\Models\Category;
-use App\Http\Requests\Customers\BasicRequest;
+use App\Http\Requests\Categories\BasicRequest;
 
-class CustomerController extends Controller
+class CategoryController extends Controller
 {
     
     /**
-     * Display the customers list 
+     * Display the categories list 
      *
      * @return \Illuminate\Http\Response
      */
@@ -21,11 +20,11 @@ class CustomerController extends Controller
     {
         $filter = allQueryFormat($request->filter);
 
-        $customers = Customer::where('firstname', 'LIKE', $filter )->paginate(10);
+        $categories = Category::where('name', 'LIKE', $filter )->paginate(10);
 
         $request->flash();
 
-        return view('customers.index', ['customers' => $customers ]);
+        return view('categories.index', ['categories' => $categories ]);
     }
 
     /**
@@ -35,30 +34,26 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        $customer = new Customer;
-
-        $customer->load("categories");
-
-        $categories = Category::list();
+        $category = new Category;
         
-        return view('customers.new', ['categories' => $categories ]);
+        return view('categories.new');
     }
 
     /**
-     * Store customer information
+     * Store category information
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(BasicRequest $request)
     {
-        $customer = new Customer;
+        $category = new Category;
 
-        $customer->saveOrUpdate( $request->all() );
+        $category->saveOrUpdate( $request->all() );
 
         $request->session()->flash('status', __('messages.saved_ok'));
 
-        return redirect()->action('CustomerController@index');
+        return redirect()->action('CategoryController@index');
     }
 
     /**
@@ -89,13 +84,9 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Customer $customer)
+    public function edit(Category $category)
     {
-        $customer->load("categories");
-
-        $categories = Category::list();
-
-        return view('customers.edit', ['customer' => $customer, 'categories' => $categories ]);
+        return view('categories.edit', ['category' => $category]);
     }
 
     /**
@@ -118,7 +109,7 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        Customer::destroy( $id );
+        Category::destroy( $id );
 
         request()->session()->flash('status', __('messages.deleted_ok'));
 

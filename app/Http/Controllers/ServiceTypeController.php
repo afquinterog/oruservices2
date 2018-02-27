@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\ServiceType;
 use App\Models\Attribute;
 use App\Models\Task;
+use App\Models\Branch;
 use App\Http\Requests\ServiceTypes\BasicRequest;
 
 
@@ -48,6 +49,25 @@ class ServiceTypeController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(ServiceType $serviceType)
+    {
+        $serviceType->load("attributes.attributeType");
+
+        $attributes = Attribute::list();
+
+        $serviceType->load("branches");   
+
+        $branches = Branch::list();
+
+        return view('servicetypes.edit', ['serviceType' => $serviceType, 'attributes' => $attributes, 'branches' => $branches ]);
     }
 
     /**
@@ -98,6 +118,7 @@ class ServiceTypeController extends Controller
      */
     public function storeTask(Request $request)
     {
+        //dd($request);
         $serviceType = ServiceType::find($request->service);
         
         $task = new Task;
@@ -115,6 +136,28 @@ class ServiceTypeController extends Controller
         return redirect()->route('service-type-edit', [ 'serviceType' => $serviceType->id ]);
     }
 
+    /**
+     * Store an branch linked with the service type
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeBranch(Request $request)
+    {
+        
+        $serviceType = ServiceType::find( $request->service );
+
+        $order = $serviceType->nextBranchOrder();
+
+        $serviceType->branches()->attach( $request->branch, ['order' => $order ] );
+
+        request()->session()->flash('status', __('messages.saved_ok'));
+
+        request()->session()->flash( 'tab', "branches" );
+
+        return redirect()->route('service-type-edit', [ 'serviceType' => $serviceType->id ]);
+    }
+
 
     /**
      * Display the specified resource.
@@ -125,21 +168,6 @@ class ServiceTypeController extends Controller
     public function show($id)
     {
         //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ServiceType $serviceType)
-    {
-        $serviceType->load("attributes.attributeType");
-
-        $attributes = Attribute::list();
-
-        return view('servicetypes.edit', ['serviceType' => $serviceType, 'attributes' => $attributes ]);
     }
 
     /**
@@ -169,22 +197,5 @@ class ServiceTypeController extends Controller
         return back()->withInput();
 
     }
-
-
-    /**
-    * Delete the attribute on the service type
-    *
-    * @param  int  $attribute
-    * @return \Illuminate\Http\Response
-    */
-    public function deleteAttribute(Attribute $attribute, ServiceType $serviceType)
-    {
-        $serviceType->attributes()->detach( $attribute->id);
-
-        request()->session()->flash('status', __('messages.deleted_ok'));
-
-        request()->session()->flash('tab', "attributes" );
-
-        return back()->withInput();
-    }
+    
 }

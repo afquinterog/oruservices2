@@ -92,7 +92,9 @@
 
           @component('components.forms.tab-item')
               @slot('name') branches @endslot
-              this is the data for the branches
+
+              @include('servicetypes.edit-branches')
+
           @endcomponent
 
            @component('components.forms.tab-item')

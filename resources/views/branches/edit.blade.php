@@ -30,6 +30,11 @@
             @slot('name') basic @endslot        
           @endcomponent 
 
+          @component('components.forms.tab-title', [ 'active' => session('tab') ])
+            @slot('title') Tipos de servicio @endslot
+            @slot('name') service_type @endslot        
+          @endcomponent
+
         @endslot 
         
 
@@ -39,6 +44,13 @@
               @slot('name') basic @endslot
               
               @include('branches.edit-branch')
+
+          @endcomponent
+
+          @component('components.forms.tab-item', [ 'active' => session('tab') ])
+              @slot('name') Tipo de servicio @endslot
+              
+              @include('branches.edit-service_type')
 
           @endcomponent
 

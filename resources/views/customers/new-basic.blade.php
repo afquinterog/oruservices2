@@ -76,7 +76,18 @@
                 @slot('value') {{ old('phone') }} @endslot
               @endcomponent
             </div>
-          </div>
+            </div>
+
+            <div class="row">
+
+              <div class="form-group col-xs-12 col-md-6">
+                @component('components.forms.form-item-select', [ 'items' => $categories ] )
+                  @slot('title') Categoría @endslot
+                  @slot('name') category_id @endslot
+                @endcomponent
+              </div>
+
+            </div>
 
           <div class="row">
             <div class="form-group col-xs-12 col-md-4 offset-md-0">

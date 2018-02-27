@@ -52,6 +52,16 @@ class ServiceType extends Model
   }
 
   /**
+  * The branches related to the service type
+  */
+  public function branches()
+  {
+      return $this->belongsToMany('App\Models\Branch')
+             ->withPivot('order')
+             ->orderBy('branch_service_type.order', 'asc');
+  }
+
+  /**
   * Service type task's
   */
   public function tasks()
@@ -60,7 +70,7 @@ class ServiceType extends Model
   }
 
   /**
-  * The next order of serviceType's task
+  * The next order of serviceType's attribute
   */
   public function nextAttributeOrder()
   {
@@ -79,21 +89,19 @@ class ServiceType extends Model
   }
 
   /**
+  * The next order of serviceType's branch
+  */
+  public function nextBranchOrder()
+  {
+      return $this->branches()->max('order') + 1 ;
+  }
+
+  /**
   * Get attribute's types list
   * 
   */
   public static function list(){
     return ServiceType::orderBy('name')->get();
   }
-
-  /**
-  * The users that belong to the role.
-  */
-  public function branches()
-  {
-    return $this->belongsToMany('App\Models\Branch');
-  
-  }
-
 
 }

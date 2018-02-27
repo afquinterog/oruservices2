@@ -32,7 +32,7 @@
 
                    @component('components.menu-item')
                     @slot('title') Categorias @endslot
-                    @slot('route') customers @endslot  
+                    @slot('route') categories @endslot  
                   @endcomponent
 
               @endcomponent

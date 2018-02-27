@@ -30,6 +30,7 @@ class BasicRequest extends FormRequest
             'email' => 'required',
             'address' => 'required',
             'phone' => 'required',
+            'category_id' => 'required',
         ];
     }
 
@@ -47,6 +48,7 @@ class BasicRequest extends FormRequest
             'email.required' => 'El campo correo es requerido.',
             'address.required' => 'El campo dirección es requerido.',
             'phone.required' => 'El campo teléfono es requerido.',
+            'category_id.required' => 'El campo categoría es requerido.',
         ];
     }
 }

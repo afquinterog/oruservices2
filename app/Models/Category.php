@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\Database;
 
-class Customer extends Model
+class Category extends Model
 {
    
   use SoftDeletes;
@@ -25,7 +25,7 @@ class Customer extends Model
   *
   * @var array
   */
-  protected $fillable = ['code', 'firstname', 'lastname', 'email', 'address', 'phone', 'category_id'];
+  protected $fillable = ['code', 'name', 'description'];
 
   /**
    * Save or update the model information
@@ -34,25 +34,15 @@ class Customer extends Model
    */
   public function saveOrUpdate(array $data)
   {
-    return $this->persist( Customer::class, $data);  
+    return $this->persist( Category::class, $data);  
   }
 
   /**
-  * The categories related to the customer
+  * Get categories list
+  * 
   */
-  public function categories()
-  {
-      return $this->belongsto('App\Models\Category');
-  }
-
-  /**
-  * The next order of serviceType's task
-  */
-  public function nextCategoryOrder()
-  {
-
-    return $this->categories()->max('order') + 1 ;
-    
+  public static function list(){
+    return Category::orderBy('name')->get();
   }
 
 }
