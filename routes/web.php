@@ -34,7 +34,7 @@ Route::group([ 'middleware' => 'auth'], function(){
 	Route::post('service-types/store/branch', 'ServiceTypeController@storeBranch');
 	
 
-	//Attributes 
+	//Attributes routes
 	Route::get('attributes', 'AttributeController@index' );
 	Route::get('attributes/new', 'AttributeController@create' )->name('attribute-create');
 	Route::get('attributes/{attribute}/orderUp/service-type/{serviceType}', 'AttributeController@orderUp');
@@ -46,7 +46,7 @@ Route::group([ 'middleware' => 'auth'], function(){
 
 	Route::post('attributes/store', 'AttributeController@store');
 
-	//Customers 
+	//Customers routes
 	Route::get('customers', 'CustomerController@index' );
 	Route::get('customers/new', 'CustomerController@create' )->name('customer-create');
 	Route::get('customers/edit/{customer}', 'CustomerController@edit' )->name('customer-edit');
@@ -55,7 +55,7 @@ Route::group([ 'middleware' => 'auth'], function(){
 	Route::post('customers/store', 'CustomerController@store');
 	Route::post('customers/store/category', 'CustomerController@storeCategory');
 
-	//Branches 
+	//Branches routes
 	Route::get('branches', 'BranchController@index' );
 	Route::get('branches/new', 'BranchController@create' )->name('branch-create');
 	Route::get('branches/edit/{branch}', 'BranchController@edit' )->name('branch-edit');
@@ -66,12 +66,12 @@ Route::group([ 'middleware' => 'auth'], function(){
 
 	Route::post('branches/store', 'BranchController@store');	
 
-	//Tasks 
+	//Tasks routes
 	Route::get('tasks/{task}/orderUp/service-type/{serviceType}', 'TaskController@orderUp');
 	Route::get('tasks/{task}/orderDown/service-type/{serviceType}', 'TaskController@orderDown');
 
 
-	//Categories 
+	//Categories routes
 	Route::get('categories', 'CategoryController@index' );
 	Route::get('categories/new', 'CategoryController@create' )->name('category-create');
 	Route::get('categories/edit/{category}', 'CategoryController@edit' )->name('category-edit');
@@ -79,5 +79,13 @@ Route::group([ 'middleware' => 'auth'], function(){
 
 	Route::post('categories/store', 'CategoryController@store');
 
+	//Users routes
+	Route::get('users', 'UserController@index' );
+	Route::get('users/new', 'UserController@create' )->name('user-create');
+	Route::get('users/edit/{user}', 'UserController@edit' )->name('user-edit');
+	Route::get('users/delete/{id}', 'UserController@destroy' )->name('user-delete');
+
+	Route::post('users/store/basic', 'UserController@storeBasic');
+	Route::post('service-types/store/attribute', 'ServiceTypeController@storeAttribute');
 });
 

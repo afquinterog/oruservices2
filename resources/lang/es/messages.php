@@ -24,17 +24,26 @@ return [
     'attributes_column_name' => 'Nombre',
     'attributes_column_status' => 'Activo',
 
+    //Edit basic information
+    'attributes_basic_information' => 'Datos básicos',
+
     //Customers
     'customers_title' => 'Clientes',
     'customers_column_code' => 'Identificación',
     'customers_column_firstname' => 'Nombres',
     'customers_column_lastname' => 'Apellidos',
 
+    //Edit basic information
+    'customers_basic_information' => 'Datos básicos',
+
     //Branches
     'branches_title' => 'Sucursales',
     'branches_column_code' => 'Código',
     'branches_column_name' => 'Nombre',
     'branches_column_address' => 'Dirección',
+
+    //Edit basic information
+    'branches_basic_information' => 'Datos básicos',
 
     //Categories
     'categories_title' => 'Categorías',
@@ -43,9 +52,14 @@ return [
     'categories_column_description' => 'Descripción',
 
     //Edit basic information
-    'attributes_basic_information' => 'Datos básicos',
-    'customers_basic_information' => 'Datos básicos',
-    'branches_basic_information' => 'Datos básicos',
     'categories_basic_information' => 'Datos básicos',
 
+    //Users
+    'users_title' => 'Usuarios',
+    'users_column_name' => 'Nombre',
+    'users_column_email' => 'Correo',
+    
+    //Edit basic information
+    'users_basic_information' => 'Datos básicos',
+    
 ];
