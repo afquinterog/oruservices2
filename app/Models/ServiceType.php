@@ -69,6 +69,15 @@ class ServiceType extends Model
   }
 
   /**
+  * The roles related to the service type
+  */
+  public function roles()
+  {
+      return $this->belongsToMany('App\Models\Role')
+             ->orderBy('role_service_type.id', 'asc');
+  }
+
+  /**
   * The next order of serviceType's attribute
   */
   public function nextAttributeOrder()
@@ -93,6 +102,14 @@ class ServiceType extends Model
   public function nextBranchOrder()
   {
       return $this->branches()->max('order') + 1 ;
+  }
+
+  /**
+  * The next order of serviceType's role
+  */
+  public function nextRoleOrder()
+  {
+      return $this->roles()->max('order') + 1 ;
   }
 
   /**

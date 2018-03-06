@@ -50,7 +50,7 @@
 
           @component('components.forms.tab-title', [ 'active' => session('tab') ])
             @slot('title') Asignación @endslot
-            @slot('name') assign @endslot            
+            @slot('name') roles @endslot            
           @endcomponent  
 
           @component('components.forms.tab-title')
@@ -90,17 +90,18 @@
 
           @endcomponent
 
-          @component('components.forms.tab-item')
+          @component('components.forms.tab-item', [ 'active' => session('tab') ])
               @slot('name') branches @endslot
 
               @include('servicetypes.edit-branches')
 
           @endcomponent
 
-           @component('components.forms.tab-item')
-              @slot('name') assign @endslot
-              Asignar todas las tareas a un rol
-              /// Asignar un rol diferente para cada tarea
+           @component('components.forms.tab-item', [ 'active' => session('tab') ])
+              @slot('name') roles @endslot
+              
+              @include('servicetypes.edit-roles')
+
           @endcomponent
 
           @component('components.forms.tab-item')

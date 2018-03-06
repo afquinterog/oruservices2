@@ -32,6 +32,7 @@ Route::group([ 'middleware' => 'auth'], function(){
 	Route::post('service-types/store/attribute', 'ServiceTypeController@storeAttribute');
 	Route::post('service-types/store/task', 'ServiceTypeController@storeTask');
 	Route::post('service-types/store/branch', 'ServiceTypeController@storeBranch');
+	Route::post('service-types/store/role', 'ServiceTypeController@storeRole');
 	
 
 	//Attributes routes
@@ -86,6 +87,24 @@ Route::group([ 'middleware' => 'auth'], function(){
 	Route::get('users/delete/{id}', 'UserController@destroy' )->name('user-delete');
 
 	Route::post('users/store/basic', 'UserController@storeBasic');
-	Route::post('service-types/store/attribute', 'ServiceTypeController@storeAttribute');
+	Route::post('users/store/role', 'UserController@storeRole');
+
+	//Roles routes
+	Route::get('roles', 'RoleController@index' );
+	Route::get('roles/new', 'RoleController@create' )->name('role-create');
+
+	Route::get('roles/{role}/orderUp/user/{user}', 'RoleController@orderUp');
+	Route::get('roles/{role}/orderDown/user/{user}', 'RoleController@orderDown');
+	Route::get('roles/{role}/user/{user}/delete', 'RoleController@deleteRole');
+
+	/*Route::get('roles/{role}/orderUp/service-type/{serviceType}', 'RoleController@orderUp');
+	Route::get('roles/{role}/orderDown/service-type/{serviceType}', 'RoleController@orderDown');*/
+	Route::get('roles/{role}/service-type/{serviceType}/delete', 'RoleController@deleteRoleServiceType');
+
+	Route::get('roles/edit/{role}', 'RoleController@edit' )->name('role-edit');
+	Route::get('roles/delete/{id}', 'RoleController@destroy' )->name('role-delete');
+
+	Route::post('roles/store', 'RoleController@store');
+
 });
 

@@ -33,10 +33,10 @@
             @slot('default') true @endslot
           @endcomponent  
 
-          {{-- @component('components.forms.tab-title', [ 'active' => session('tab') ])
-            @slot('title') Atributos @endslot
-            @slot('name') attributes @endslot        
-          @endcomponent  --}}
+          @component('components.forms.tab-title', [ 'active' => session('tab') ])
+            @slot('title') Roles @endslot
+            @slot('name') roles @endslot        
+          @endcomponent 
 
         @endslot 
         
@@ -50,12 +50,12 @@
 
           @endcomponent
 
-          {{-- @component('components.forms.tab-item',  [ 'active' => session('tab') ])
-              @slot('name') attributes @endslot
+          @component('components.forms.tab-item',  [ 'active' => session('tab') ])
+              @slot('name') roles @endslot
               
-              @include('servicetypes.edit-attributes')
+              @include('users.edit-roles')
 
-          @endcomponent --}}
+          @endcomponent
 
         @endslot
 

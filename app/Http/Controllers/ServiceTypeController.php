@@ -9,6 +9,7 @@ use App\Models\ServiceType;
 use App\Models\Attribute;
 use App\Models\Task;
 use App\Models\Branch;
+use App\Models\Role;
 use App\Http\Requests\ServiceTypes\BasicRequest;
 
 
@@ -67,7 +68,11 @@ class ServiceTypeController extends Controller
 
         $branches = Branch::list();
 
-        return view('servicetypes.edit', ['serviceType' => $serviceType, 'attributes' => $attributes, 'branches' => $branches ]);
+        $serviceType->load("roles");   
+
+        $roles = Role::list();
+
+        return view('servicetypes.edit', ['serviceType' => $serviceType, 'attributes' => $attributes, 'branches' => $branches, 'roles' => $roles ]);
     }
 
     /**
@@ -154,6 +159,28 @@ class ServiceTypeController extends Controller
         request()->session()->flash('status', __('messages.saved_ok'));
 
         request()->session()->flash( 'tab', "branches" );
+
+        return redirect()->route('service-type-edit', [ 'serviceType' => $serviceType->id ]);
+    }
+
+    /**
+     * Store an role linked with the service type
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeRole(Request $request)
+    {
+        
+        $serviceType = ServiceType::find( $request->service );
+
+        $order = $serviceType->nextRoleOrder();
+
+        $serviceType->roles()->attach( $request->role, ['order' => $order ] );
+
+        request()->session()->flash('status', __('messages.saved_ok'));
+
+        request()->session()->flash( 'tab', "roles" );
 
         return redirect()->route('service-type-edit', [ 'serviceType' => $serviceType->id ]);
     }

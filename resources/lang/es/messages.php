@@ -61,5 +61,13 @@ return [
     
     //Edit basic information
     'users_basic_information' => 'Datos básicos',
+
+    //Roles
+    'roles_title' => 'Roles',
+    'roles_column_code' => 'Código',
+    'roles_column_name' => 'Nombre',
+    
+    //Edit basic information
+    'roles_basic_information' => 'Datos básicos',    
     
 ];

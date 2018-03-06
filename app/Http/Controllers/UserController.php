@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\User;
+use App\Models\Role;
 use App\Http\Requests\Users\BasicRequest;
 
 
@@ -56,11 +57,11 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //$user->load("roles");
+        $user->load("roles");
 
-        //$roles = Role::list();
+        $roles = Role::list();
 
-        return view('users.edit', ['user' => $user ]);//, 'attributes' => $attributes, 'branches' => $branches ]);
+        return view('users.edit', ['user' => $user, 'roles' => $roles ]);
     }
 
     /**
@@ -98,25 +99,25 @@ class UserController extends Controller
     }
 
     /**
-     * Store an attribute linked with the service type
+     * Store an role linked with the user
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeAttribute(Request $request)
+    public function storeRole(Request $request)
     {
         
-        $serviceType = ServiceType::find( $request->service );
+        $user = User::find( $request->user );
 
-        $order = $serviceType->nextAttributeOrder();
+        $order = $user->nextRoleOrder();
 
-        $serviceType->attributes()->attach( $request->attribute, ['order' => $order ] );
+        $user->roles()->attach( $request->role, ['order' => $order ] );
 
         request()->session()->flash('status', __('messages.saved_ok'));
 
-        request()->session()->flash( 'tab', "attributes" );
+        request()->session()->flash( 'tab', "roles" );
 
-        return redirect()->route('service-type-edit', [ 'serviceType' => $serviceType->id ]);
+        return redirect()->route('user-edit', [ 'user' => $user->id ]);
     }
 
     /**

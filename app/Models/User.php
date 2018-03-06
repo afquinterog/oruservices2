@@ -42,13 +42,13 @@ class User extends Model
   }
 
   /**
-  * The attributes related to the service type
+  * The roles related to the service type
   */
-  public function attributes()
+  public function roles()
   {
-      return $this->belongsToMany('App\Models\Attribute')
+      return $this->belongsToMany('App\Models\Role')
              ->withPivot('order')
-             ->orderBy('attribute_service_type.order', 'asc');
+             ->orderBy('role_user.order', 'asc');
   }
 
   /**
@@ -71,11 +71,11 @@ class User extends Model
   /**
   * The next order of serviceType's attribute
   */
-  public function nextAttributeOrder()
+  public function nextRoleOrder()
   {
 
-    return $this->attributes()->get()->count() > 0  ?  
-           $this->attributes()->get()->last()->pivot->order + 1 : 1 ;
+    return $this->roles()->get()->count() > 0  ?  
+           $this->roles()->get()->last()->pivot->order + 1 : 1 ;
     
   }
 
