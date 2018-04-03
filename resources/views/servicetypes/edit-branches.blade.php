@@ -16,22 +16,6 @@
 	        	<td class="text-nowrap">
 
 							@component('components.table-option')
-								@slot('title') {{ __("Subir") }} @endslot
-								@slot('route') 
-									{{ url( "/branches/{$branch->id}/orderUp/service-type/{$serviceType->id}") }}
-								@endslot 
-								@slot('icon') wb-dropup @endslot
-							@endcomponent 	
-
-							@component('components.table-option')
-								@slot('title') {{ __("Bajar") }} @endslot
-								@slot('route')
-									{{ url( "/branches/{$branch->id}/orderDown/service-type/{$serviceType->id}") }}
-								@endslot
-								@slot('icon') wb-dropdown @endslot
-							@endcomponent 	
-
-							@component('components.table-option')
 								@slot('title') {{ __('messages.disable') }} @endslot
 								@slot('route') {{ url("branches/{$branch->id}/service-type/{$serviceType->id}/delete") }} @endslot
 								@slot('icon') wb-close @endslot

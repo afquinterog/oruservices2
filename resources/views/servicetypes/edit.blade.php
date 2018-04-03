@@ -50,15 +50,15 @@
 
           @component('components.forms.tab-title', [ 'active' => session('tab') ])
             @slot('title') Asignación @endslot
-            @slot('name') roles @endslot            
+            @slot('name') assign @endslot            
           @endcomponent  
 
-          @component('components.forms.tab-title')
+          @component('components.forms.tab-title', [ 'active' => session('tab') ])
             @slot('title') Estadisticas @endslot
             @slot('name') stats @endslot            
           @endcomponent 
 
-          @component('components.forms.tab-title')
+          @component('components.forms.tab-title', [ 'active' => session('tab') ])
             @slot('title') Notificaciones @endslot
             @slot('name') notifications @endslot            
           @endcomponent 
@@ -98,18 +98,19 @@
           @endcomponent
 
            @component('components.forms.tab-item', [ 'active' => session('tab') ])
-              @slot('name') roles @endslot
+           
+              @slot('name') assign @endslot
               
               @include('servicetypes.edit-roles')
 
           @endcomponent
 
-          @component('components.forms.tab-item')
+          @component('components.forms.tab-item', [ 'active' => session('tab') ])
               @slot('name') stats @endslot
               this is the data for the stats
           @endcomponent
 
-          @component('components.forms.tab-item')
+          @component('components.forms.tab-item', [ 'active' => session('tab') ])
               @slot('name') notifications @endslot
               this is the data for the notifications
           @endcomponent

@@ -99,7 +99,7 @@ class TaskController extends Controller
 
         request()->session()->flash('tab', "tasks" );
 
-        return back()->withInput();
+        return redirect()->route('service-type-edit', [ 'serviceType' => $serviceType->id ]);
     }
 
     /**
@@ -116,6 +116,6 @@ class TaskController extends Controller
 
         request()->session()->flash('tab', "tasks" );
 
-        return back()->withInput();
+        return redirect()->route('service-type-edit', [ 'serviceType' => $serviceType->id ]);
     }
 }

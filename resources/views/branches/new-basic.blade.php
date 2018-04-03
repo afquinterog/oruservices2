@@ -21,6 +21,7 @@
                 @slot('title') Código @endslot
                 @slot('placeholder') Código @endslot
                 @slot('name') code @endslot
+                @slot('value') {{ old('code') }} @endslot
 
               @endcomponent
             </div>
@@ -35,6 +36,7 @@
                 @slot('title') Nombre @endslot
                 @slot('placeholder') Nombre @endslot
                 @slot('name') name @endslot
+                @slot('value') {{ old('name') }} @endslot
 
               @endcomponent
             </div>
@@ -49,6 +51,7 @@
                 @slot('title') Dirección @endslot
                 @slot('placeholder') Dirección @endslot
                 @slot('name') address @endslot
+                @slot('value') {{ old('address') }} @endslot
               @endcomponent
               
             </div>

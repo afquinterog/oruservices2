@@ -106,5 +106,7 @@ Route::group([ 'middleware' => 'auth'], function(){
 
 	Route::post('roles/store', 'RoleController@store');
 
+	Route::get('check-privileges', 'HomeController@checkPrivileges');
+
 });
 

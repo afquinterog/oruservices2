@@ -21,11 +21,13 @@
 									{{ url( "/roles/{$role->id}/orderUp/service-type/{$serviceType->id}") }}
 								@endslot 
 								@slot('icon') wb-dropup @endslot
+
 							@endcomponent 	
 
 							@component('components.table-option')
 								@slot('title') {{ __("Bajar") }} @endslot
 								@slot('route')
+
 									{{ url( "/roles/{$role->id}/orderDown/service-type/{$serviceType->id}") }}
 								@endslot
 								@slot('icon') wb-dropdown @endslot
@@ -34,6 +36,7 @@
 							@component('components.table-option')
 								@slot('title') {{ __('messages.disable') }} @endslot
 								@slot('route') {{ url("roles/{$role->id}/service-type/{$serviceType->id}/delete") }} @endslot
+
 								@slot('icon') wb-close @endslot
 							@endcomponent 	
 
@@ -46,7 +49,8 @@
 		@endcomponent
 
 
-		@include('servicetypes.edit-roles-form')
+
+@include('servicetypes.edit-roles-form')
 
 		
 
