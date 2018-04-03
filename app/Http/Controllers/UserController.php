@@ -79,7 +79,7 @@ class UserController extends Controller
 
         $request->session()->flash('status', __('messages.saved_ok'));
 
-        return back()->withInput();
+        return redirect()->action('UserController@index');
     }
 
     /**
@@ -94,7 +94,7 @@ class UserController extends Controller
 
         request()->session()->flash('status', __('messages.deleted_ok'));
 
-        return back()->withInput();
+        return redirect()->action('UserController@index');
 
     }
 

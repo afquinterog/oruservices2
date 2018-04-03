@@ -56,7 +56,7 @@ class CustomerController extends Controller
 
         $customer->saveOrUpdate( $request->all() );
 
-        $request->session()->flash('status', __('messages.saved_ok'));
+        $request->session()->flash('status', __('messages.saved_ok'));  
 
         return redirect()->action('CustomerController@index');
     }
@@ -122,7 +122,7 @@ class CustomerController extends Controller
 
         request()->session()->flash('status', __('messages.deleted_ok'));
 
-        return back()->withInput();
+        return redirect()->action('CustomerController@index');
 
     }
 
