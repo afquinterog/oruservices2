@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Bouncer;
+
 class HomeController extends Controller
 {
     /**
@@ -30,5 +32,11 @@ class HomeController extends Controller
     public function services()
     {
         return view('service-types');
+    }
+
+    public function checkPrivileges()
+    {
+        //Bouncer::allow('admin')->to('view-reports');
+        Bouncer::allow('admin')->to('remove-roles');
     }
 }

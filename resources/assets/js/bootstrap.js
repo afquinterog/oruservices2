@@ -5,10 +5,10 @@ window._ = require('lodash');
  * Added turbolinks 
  */
 
-import Turbolinks from 'turbolinks';
+//import Turbolinks from 'turbolinks';
 
 
-Turbolinks.start();
+//Turbolinks.start();
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support

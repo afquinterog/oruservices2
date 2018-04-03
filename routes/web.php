@@ -79,5 +79,8 @@ Route::group([ 'middleware' => 'auth'], function(){
 
 	Route::post('categories/store', 'CategoryController@store');
 
+
+	Route::get('check-privileges', 'HomeController@checkPrivileges');
+
 });
 
