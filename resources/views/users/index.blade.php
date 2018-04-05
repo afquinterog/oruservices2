@@ -9,7 +9,7 @@
 	  @slot('breadcrumbs')
 	  	<ol class="breadcrumb">
 	        <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
-	        <li class="breadcrumb-item active"><a href="#"> {{ __('messages.users_title') }} </a></li>
+	        <li class="breadcrumb-item active"><a href="users"> {{ __('messages.users_title') }} </a></li>
 	      </ol>
 	  @endslot
 
@@ -52,12 +52,12 @@
 								@slot('icon') wb-wrench @endslot
 							@endcomponent
 
-							@component('components.table-option')
-								@slot('title') {{ __('messages.disable') }} @endslot
-								@slot('route') {{ url('/users/delete/' . $user->id) }} @endslot
-								{{-- @slot('route') {{ route('services-type-delete', ['id' => $serviceType->id ]) }} @endslot --}}
-								@slot('icon') wb-close @endslot
-							@endcomponent 	
+							{{-- @component('components.table-option') --}}
+								{{-- @slot('title') {{ __('messages.disable') }} @endslot --}}
+								{{-- @slot('route') {{ url('/users/delete/' . $user->id) }} @endslot --}}
+											{{-- @slot('route') {{ route('services-type-delete', ['id' => $serviceType->id ]) }} @endslot --}}
+								{{-- @slot('icon') wb-close @endslot --}}
+							{{-- @endcomponent 	 --}}
 
 	        	</td>
 		      </tr>

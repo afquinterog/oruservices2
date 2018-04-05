@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-use App\Models\User;
-use App\Models\Role;
+use App\User;
+use Silber\Bouncer\Database\Role;
 use App\Http\Requests\Users\BasicRequest;
 
 
@@ -72,14 +72,28 @@ class UserController extends Controller
      */
     public function storeBasic(BasicRequest $request)
     {
+        $user = new Role;
+
+        $data = $request->all();
+
+        $user = ( isset( $data['id']) ) ? User::find( $data['id'] ) : new User ;
+
+        $user->fill( $data );
+
+        $user->save();
+
+        request()->session()->flash('status', __('messages.saved_ok'));
+
+        return redirect()->action('UserController@index');        
+
         
-        $user = new User;
+        /*$user = new User;
 
         $user->saveOrUpdate( $request->all() );
 
         $request->session()->flash('status', __('messages.saved_ok'));
-
-        return redirect()->action('UserController@index');
+        
+        return redirect()->action('UserController@index');*/
     }
 
     /**

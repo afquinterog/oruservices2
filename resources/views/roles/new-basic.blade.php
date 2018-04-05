@@ -17,9 +17,9 @@
 
             <div class="form-group col-xs-12 col-md-6">
               @component('components.forms.form-item-text')
-                @slot('title') Código @endslot
-                @slot('placeholder') Código @endslot
-                @slot('name') code @endslot
+                @slot('title') Nombre @endslot
+                @slot('placeholder') Nombre @endslot
+                @slot('name') name @endslot
               @endcomponent
             </div>
 
@@ -29,9 +29,9 @@
 
             <div class="form-group col-xs-12 col-md-6">
               @component('components.forms.form-item-text')
-                @slot('title') Nombre @endslot
-                @slot('placeholder') Nombre @endslot
-                @slot('name') name @endslot
+                @slot('title') Título @endslot
+                @slot('placeholder') Título @endslot
+                @slot('name') title @endslot
               @endcomponent
             </div>
 

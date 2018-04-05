@@ -46,7 +46,7 @@ class User extends Model
   */
   public function roles()
   {
-      return $this->belongsToMany('App\Models\Role')
+      return $this->belongsToMany('Silber\Bouncer\Database\Role')
              ->withPivot('order')
              ->orderBy('role_user.order', 'asc');
   }

@@ -24,8 +24,8 @@ class BasicRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required',
             'name' => 'required',
+            'title' => 'required',
         ];
     }
 
@@ -38,8 +38,8 @@ class BasicRequest extends FormRequest
     {
         return [
 
-            'code.required'  => 'El campo Código es requerido',
-            'name.required'  => 'El campo nombre es requerido',
+            'name.required'  => 'El campo Nombre es requerido',
+            'title.required'  => 'El campo Título es requerido',
         ];
     }
 }

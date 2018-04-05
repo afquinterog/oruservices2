@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-use App\Models\Role;
+use Silber\Bouncer\Database\Role;
 use App\Models\User;
 use App\Models\ServiceType;
 use App\Http\Requests\Roles\BasicRequest;
@@ -51,11 +51,17 @@ class RoleController extends Controller
     {
         $role = new Role;
 
-        $role->saveOrUpdate( $request->all() );
+        $data = $request->all();
+
+        $role = ( isset( $data['id']) ) ? Role::find( $data['id'] ) : new Role ;
+
+        $role->fill( $data );
+
+        $role->save();
 
         request()->session()->flash('status', __('messages.saved_ok'));
 
-        return back()->withInput();
+        return redirect()->action('RoleController@index');        
     }
 
     /**

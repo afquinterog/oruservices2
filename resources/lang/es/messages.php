@@ -64,7 +64,7 @@ return [
 
     //Roles
     'roles_title' => 'Roles',
-    'roles_column_code' => 'Código',
+    'roles_column_title' => 'Título',
     'roles_column_name' => 'Nombre',
     
     //Edit basic information

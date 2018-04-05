@@ -9,7 +9,7 @@ use App\Traits\Database;
 class Role extends Model
 {
 
-  use SoftDeletes;
+  // use SoftDeletes;
 
   use Database;
 

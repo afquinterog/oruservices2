@@ -9,7 +9,7 @@
 	  @slot('breadcrumbs')
 	  	<ol class="breadcrumb">
 	        <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
-	        <li class="breadcrumb-item active"><a href="#"> {{ __('messages.roles_title') }} </a></li>
+	        <li class="breadcrumb-item active"><a href="roles"> {{ __('messages.roles_title') }} </a></li>
 	      </ol>
 	  @endslot
 
@@ -33,16 +33,16 @@
 				@endslot
 
 				@slot('columns')
-					 <th> {{ __('messages.roles_column_code') }} </th>
-	         <th> {{ __('messages.roles_column_name') }}</th>
+					 <th> {{ __('messages.roles_column_name') }} </th>
+	         <th> {{ __('messages.roles_column_title') }}</th>
 	         <th class="text-nowrap">{{ __('messages.actions') }}</th>
 				@endslot
 
 				@foreach ($roles as $role)
 
 	        <tr>
-	        	<td>{{ $role->code }}</td>
 	        	<td>{{ $role->name }}</td>
+	        	<td>{{ $role->title }}</td>
 
 	        	<td class="text-nowrap">
 
@@ -52,12 +52,12 @@
 								@slot('icon') wb-wrench @endslot
 							@endcomponent
 
-							@component('components.table-option')
-								@slot('title') {{ __('messages.disable') }} @endslot
-								@slot('route') {{ url('/roles/delete/' . $role->id) }} @endslot
-								{{-- @slot('route') {{ route('services-type-delete', ['id' => $serviceType->id ]) }} @endslot --}}
-								@slot('icon') wb-close @endslot
-							@endcomponent 	
+							{{-- @component('components.table-option') --}}
+								{{-- @slot('title') {{ __('messages.disable') }} @endslot --}}
+								{{-- @slot('route') {{ url('/roles/delete/' . $role->id) }} @endslot --}}
+												{{-- @slot('route') {{ route('services-type-delete', ['id' => $serviceType->id ]) }} @endslot --}}
+								{{-- @slot('icon') wb-close @endslot --}}
+							{{-- @endcomponent 	 --}}
 
 	        	</td>
 		      </tr>
