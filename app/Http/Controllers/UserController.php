@@ -55,11 +55,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(\App\User $user)
     {
-        $user->load("roles");
-
-        $roles = Role::list();
+        
+        $roles = \App\Models\Role::list();
 
         return view('users.edit', ['user' => $user, 'roles' => $roles ]);
     }
@@ -123,9 +122,7 @@ class UserController extends Controller
         
         $user = User::find( $request->user );
 
-        $order = $user->nextRoleOrder();
-
-        $user->roles()->attach( $request->role, ['order' => $order ] );
+        $user->assign( $request->role );
 
         request()->session()->flash('status', __('messages.saved_ok'));
 
