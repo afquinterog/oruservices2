@@ -18,7 +18,7 @@
 	        	
 					@component('components.table-option')
 						@slot('title') {{ __('messages.disable') }} @endslot
-						@slot('route') {{ url('/service-types/delete/' . $serviceType->id) }} @endslot
+						@slot('route') {{ url("tasks/{$task->id}/service-type/{$serviceType->id}/delete") }} @endslot
 						{{-- @slot('route') {{ route('services-type-delete', ['id' => $serviceType->id ]) }} @endslot --}}
 						@slot('icon') wb-close @endslot
 					@endcomponent  

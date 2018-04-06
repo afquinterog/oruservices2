@@ -70,6 +70,7 @@ Route::group([ 'middleware' => 'auth'], function(){
 	//Tasks routes
 	Route::get('tasks/{task}/orderUp/service-type/{serviceType}', 'TaskController@orderUp');
 	Route::get('tasks/{task}/orderDown/service-type/{serviceType}', 'TaskController@orderDown');
+	Route::get('tasks/{task}/service-type/{serviceType}/delete', 'TaskController@deleteTask');
 
 
 	//Categories routes

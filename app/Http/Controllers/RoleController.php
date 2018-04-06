@@ -189,7 +189,7 @@ class RoleController extends Controller
 
         request()->session()->flash('status', __('messages.deleted_ok'));
 
-        request()->session()->flash('tab', "roles" );
+        request()->session()->flash('tab', "assign" );
 
         return back()->withInput();
     }

@@ -180,7 +180,7 @@ class ServiceTypeController extends Controller
 
         request()->session()->flash('status', __('messages.saved_ok'));
 
-        request()->session()->flash( 'tab', "roles" );
+        request()->session()->flash( 'tab', "assign" );
 
         return redirect()->route('service-type-edit', [ 'serviceType' => $serviceType->id ]);
     }

@@ -118,4 +118,21 @@ class TaskController extends Controller
 
         return redirect()->route('service-type-edit', [ 'serviceType' => $serviceType->id ]);
     }
+
+    /**
+    * Delete the task on the service type
+    *
+    * @param  int  $task
+    * @return \Illuminate\Http\Response
+    */
+    public function deleteTask(Task $task, ServiceType $serviceType)
+    {
+        $serviceType->tasks()->detach( $task->id);
+
+        request()->session()->flash('status', __('messages.deleted_ok'));
+
+        request()->session()->flash('tab', "tasks" );
+
+        return back()->withInput();
+    }
 }
