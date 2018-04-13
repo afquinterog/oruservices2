@@ -78,6 +78,14 @@ class ServiceType extends Model
   }
 
   /**
+  * The users related to the service type
+  */
+  public function users()
+  {
+      return $this->belongsto('App\Models\User');
+  }
+
+  /**
   * The next order of serviceType's attribute
   */
   public function nextAttributeOrder()

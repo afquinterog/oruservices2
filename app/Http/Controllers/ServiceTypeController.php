@@ -10,6 +10,7 @@ use App\Models\Attribute;
 use App\Models\Task;
 use App\Models\Branch;
 use App\Models\Role;
+use App\User;
 use App\Http\Requests\ServiceTypes\BasicRequest;
 
 
@@ -38,7 +39,13 @@ class ServiceTypeController extends Controller
      */
     public function create()
     {
-        return view('servicetypes.new');
+        $serviceType = new ServiceType;
+        
+        $serviceType->load("users");
+
+        $users = User::list();
+
+        return view('servicetypes.new', ['users' => $users ]);
     }
 
     /**
@@ -72,7 +79,11 @@ class ServiceTypeController extends Controller
 
         $roles = Role::list();
 
-        return view('servicetypes.edit', ['serviceType' => $serviceType, 'attributes' => $attributes, 'branches' => $branches, 'roles' => $roles ]);
+        $serviceType->load("users");
+
+        $users = User::list();
+
+        return view('servicetypes.edit', ['serviceType' => $serviceType, 'attributes' => $attributes, 'branches' => $branches, 'roles' => $roles, 'users' => $users ]);
     }
 
     /**
@@ -83,14 +94,15 @@ class ServiceTypeController extends Controller
      */
     public function storeBasic(BasicRequest $request)
     {
-        
         $serviceType = new ServiceType;
+
+        //dd($request);
 
         $serviceType->saveOrUpdate( $request->all() );
 
         $request->session()->flash('status', __('messages.saved_ok'));
 
-        return back()->withInput();
+        return redirect()->action('ServiceTypeController@index');
     }
 
     /**

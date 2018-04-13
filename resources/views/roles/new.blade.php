@@ -9,7 +9,7 @@
 	  @slot('breadcrumbs')
 	  	<ol class="breadcrumb">
 	        <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
-	        <li class="breadcrumb-item active"><a href="#"> {{ __('messages.roles_title') }} </a></li>
+	        <li class="breadcrumb-item active"><a href="/roles"> {{ __('messages.roles_title') }} </a></li>
 	      </ol>
 	  @endslot
 

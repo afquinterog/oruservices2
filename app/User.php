@@ -30,4 +30,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+    * Get attribute's types list
+    * 
+    */
+    public static function list(){
+        return User::orderBy('name')->get();
+    }
 }

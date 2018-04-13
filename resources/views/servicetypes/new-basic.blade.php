@@ -46,6 +46,15 @@
           </div>
 
           <div class="row">
+            <div class="form-group col-xs-6 col-md-6">
+              @component('components.forms.form-item-select', [ 'items' => $users ] )
+                @slot('title') Responsable @endslot
+                @slot('name') manager @endslot
+              @endcomponent
+            </div>
+          </div>
+
+          <div class="row">
 
             <div class="form-group col-xs-6 col-md-6">
                 

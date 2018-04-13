@@ -59,7 +59,7 @@ class AttributeController extends Controller
 
         request()->session()->flash('status', __('messages.saved_ok'));
 
-        return back()->withInput();
+        return redirect()->action('AttributeController@index');
     }
 
     /**
