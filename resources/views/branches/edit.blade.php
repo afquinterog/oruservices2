@@ -9,7 +9,7 @@
 	  @slot('breadcrumbs')
 	  	<ol class="breadcrumb">
 	        <li class="breadcrumb-item"><a href="/dashboard">Inicio</a></li>
-	        <li class="breadcrumb-item active"><a href="#"> {{ __('messages.branches_title') }} </a></li>
+	        <li class="breadcrumb-item active"><a href="/branches"> {{ __('messages.branches_title') }} </a></li>
 	      </ol>
 	  @endslot
 
@@ -48,7 +48,7 @@
           @endcomponent
 
           @component('components.forms.tab-item', [ 'active' => session('tab') ])
-              @slot('name') Tipo de servicio @endslot
+              @slot('name') service_type @endslot
               
               @include('branches.edit-service_type')
 

@@ -13,6 +13,14 @@ class Attribute extends Model
 
   use Database;
 
+
+  const TYPE_TEXT = 1;
+  const TYPE_NUMBER = 2;
+  const TYPE_VALUE = 3;
+  const TYPE_DATE = 4;
+  const TYPE_HOUR = 5;
+  const TYPE_LIST = 6;
+  const TYPE_AUTOCOMPLETE = 7;
   /**
    * The attributes that should be mutated to dates.
    *

@@ -40,7 +40,7 @@ class Task extends Model
 	/**
 	* The task 
 	*/
-	public function task()
+	public function serviceType()
 	{
 		return $this->belongsTo('App\Models\ServiceType');
 	}

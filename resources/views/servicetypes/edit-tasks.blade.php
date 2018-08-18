@@ -13,15 +13,19 @@
 	        <tr>
 	        	<td>{{ $task->name }}</td>
 
-	        	<td class="text-nowrap">
+	        	<td class="text-nowrap"> 
 
-	        	
-					@component('components.table-option')
+						{{-- @slot('route') {{ "service-type/{$serviceType->id}/task/{$task->id}"  }} @endslot --}}
+
+					@component('components.forms.form-item-form-button', 
+						[ 'data' => ['serviceType' => $serviceType->id , 'task' => $task->id  ] ] )
+
+						@slot('route') {{ "/service-type/task/delete"  }} @endslot
+						@slot('method') DELETE @endslot
 						@slot('title') {{ __('messages.disable') }} @endslot
-						@slot('route') {{ url('/service-types/delete/' . $serviceType->id) }} @endslot
-						{{-- @slot('route') {{ route('services-type-delete', ['id' => $serviceType->id ]) }} @endslot --}}
-						@slot('icon') wb-close @endslot
-					@endcomponent  
+						@slot('icon')  wb-close @endslot
+					@endcomponent
+
 
 					@component('components.table-option')
 						@slot('title') {{ __("Subir") }} @endslot

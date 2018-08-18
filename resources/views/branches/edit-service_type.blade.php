@@ -5,7 +5,7 @@
 			
 				@slot('columns')
 					 <th> {{ "Nombre" }} </th>
-	         <th class="text-nowrap">{{ __('messages.actions') }}</th>
+	       {{--   <th class="text-nowrap">{{ __('messages.actions') }}</th> --}}
 				@endslot
 
 				@foreach ( $branch->serviceTypes as $stype)
@@ -13,9 +13,9 @@
 	        <tr>
 	        	<td>{{ $stype->name }}</td>
 
-	        	<td class="text-nowrap">
+	        	{{-- <td class="text-nowrap"> --}}
 
-							@component('components.table-option')
+							{{-- @component('components.table-option')
 								@slot('title') {{ __("Subir") }} @endslot
 								@slot('route') 
 									{{ url( "/service-types/{$stype->id}/orderUp/branch/{$branch->id}") }}
@@ -35,9 +35,10 @@
 								@slot('title') {{ __('messages.disable') }} @endslot
 								@slot('route') {{ url("service-types/{$stype->id}/branch/{$branch->id}/delete") }} @endslot
 								@slot('icon') wb-close @endslot
-							@endcomponent 	
+							@endcomponent 	 --}}
 
-	        	</td>
+	        	{{-- </td> --}}
+	        	
 		      </tr>
 
 	   		@endforeach

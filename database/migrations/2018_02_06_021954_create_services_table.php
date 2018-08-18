@@ -15,14 +15,16 @@ class CreateServicesTable extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('code');
+            $table->string('code')->nullable();
             $table->integer('customer_id');
             $table->string('service_type_id');
-            $table->integer('status');
-            $table->string('cost');
-            $table->date('request_date');
+            $table->integer('service_status_id')->default(1);
+            $table->integer('cost')->default(0);
             $table->date('service_date');
-            $table->date('finish_date');
+            $table->date('finish_date')->nullable();
+            $table->integer('rating')->nullable();
+            $table->integer('branch_id')->index();
+            $table->integer('company_id')->index();
             $table->softDeletes();
             $table->timestamps();
         });

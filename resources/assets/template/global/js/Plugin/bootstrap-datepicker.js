@@ -29,6 +29,7 @@
       return babelHelpers.possibleConstructorReturn(this, (Datepicker.__proto__ || Object.getPrototypeOf(Datepicker)).apply(this, arguments));
     }
 
+
     babelHelpers.createClass(Datepicker, [{
       key: 'getName',
       value: function getName() {

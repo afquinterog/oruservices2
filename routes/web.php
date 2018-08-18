@@ -20,7 +20,15 @@ Route::group([ 'middleware' => 'auth'], function(){
 
 	//Dashboard
 	Route::get('/', 'HomeController@index');
-	Route::get('/dashboard', 'HomeController@index')->name('home');
+	Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+
+	//Service routes
+	Route::get('/service/create/{serviceType}', 'ServiceController@create')->name('create-service');
+	Route::post('/service/create', 'ServiceController@redirectCreateForm');
+	Route::get('/services/edit/{service}', 'ServiceController@edit');
+	Route::post('/service/store', 'ServiceController@store');
+	Route::get('/services', 'ServiceController@index');
 
 	//Services types routes
 	Route::get('service-types', 'ServiceTypeController@index' );
@@ -41,6 +49,7 @@ Route::group([ 'middleware' => 'auth'], function(){
 	Route::get('attributes/{attribute}/orderUp/service-type/{serviceType}', 'AttributeController@orderUp');
 	Route::get('attributes/{attribute}/orderDown/service-type/{serviceType}', 'AttributeController@orderDown');
 	Route::get('attributes/{attribute}/service-type/{serviceType}/delete', 'AttributeController@deleteAttribute');
+
 
 	Route::get('attributes/edit/{attribute}', 'AttributeController@edit' )->name('attribute-edit');
 	Route::get('attributes/delete/{id}', 'AttributeController@destroy' )->name('attribute-delete');
@@ -70,6 +79,9 @@ Route::group([ 'middleware' => 'auth'], function(){
 	//Tasks routes
 	Route::get('tasks/{task}/orderUp/service-type/{serviceType}', 'TaskController@orderUp');
 	Route::get('tasks/{task}/orderDown/service-type/{serviceType}', 'TaskController@orderDown');
+
+
+	Route::delete('service-type/task/delete', 'TaskController@deleteTaskFromServiceType');
 
 
 	//Categories routes
@@ -107,6 +119,13 @@ Route::group([ 'middleware' => 'auth'], function(){
 	Route::post('roles/store', 'RoleController@store');
 
 	Route::get('check-privileges', 'HomeController@checkPrivileges');
+
+	Route::get('find', 'CustomerController@find');
+
+	Route::get('cities/search', 'CityController@find');
+
+	//Define workflow
+	Route::get('workflow', 'ServiceController@workflowTest');
 
 });
 

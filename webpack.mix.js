@@ -15,6 +15,8 @@ mix.js( [
     'resources/assets/js/lang/en.js', 
     'resources/assets/js/utils/notifications.js',
     'resources/assets/js/services/server.js',
+
+    'resources/assets/js/services-edit.js'
   ],
   'public/js/admin.js'
   );
@@ -43,7 +45,13 @@ mix.styles([
       'resources/assets/template/global/vendor/ascolopicker/asColorPicker.css',
       'resources/assets/template/global/vendor/prism/prism.css',
 
+      'resources/assets/template/global/vendor/bootstrap-datepicker/bootstrap-datepicker.css',
+      'resources/assets/template/global/vendor/jt-timepicker/jquery-timepicker.css',
+      'resources/assets/template/global/vendor/typeahead-js/typeahead.css',
+      
       'resources/assets/template/global/vendor/datatables-bootstrap/dataTables.bootstrap.css',
+
+      
       
       'resources/assets/template/custom.css',
       ], 
@@ -77,6 +85,13 @@ mix.scripts([
   'resources/assets/template/global/vendor/toastr/toastr.js',
   'resources/assets/template/global/vendor/toolbar/jquery.toolbar.js',
   'resources/assets/template/global/vendor/prism/prism.js',
+
+  'resources/assets/template/global/vendor/bootstrap-datepicker/bootstrap-datepicker.js',
+  'resources/assets/template/global/vendor/jt-timepicker/jquery.timepicker.min.js',
+
+  'resources/assets/template/global/vendor/typeahead-js/typeahead.bundle.min.js',
+  
+
   //'resources/assets/template/global/vendor/ascolor/jjquery-asColor.min.js', 
   //'resources/assets/template/global/vendor/asgradient/jquery-asGradient.min.js', 
   //'resources/assets/template/global/vendor/ascolopicker/jquery-asColorPicker.js', 
@@ -104,7 +119,12 @@ mix.scripts([
 		  'resources/assets/template/global/js/Plugin/asscrollable.js',
 		  'resources/assets/template/global/js/Plugin/slidepanel.js',
 		  'resources/assets/template/global/js/Plugin/toolbar.js' ,
+
+      'resources/assets/template/global/js/Plugin/bootstrap-datepicker.js' ,
       //'resources/assets/template/global/js/Plugin/ascolorpicker.js',
+      //
+      'resources/assets/js/libraries.js'
+     
 		],
 		'public/js/core.js'
 	);

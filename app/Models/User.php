@@ -104,4 +104,14 @@ class User extends Model
     return ServiceType::orderBy('name')->get();
   }
 
+  /**
+  * The company the user belongs to
+  */
+  public function company()
+  {
+      return $this->belongsToMany('App\Models\Company');
+             
+
+  }
+
 }

@@ -26,7 +26,7 @@ class Branch extends Model
   *
   * @var array
   */
-  protected $fillable = ['code', 'name', 'address'];
+  protected $fillable = ['code', 'name', 'address', 'company_id'];
 
   /**
    * Save or update the model information
@@ -39,7 +39,7 @@ class Branch extends Model
   }
 
   /**
-   * The service type
+   * The service types
    */
   public function serviceTypes()
   {

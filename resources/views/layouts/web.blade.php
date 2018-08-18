@@ -41,11 +41,11 @@
   <!-- End Init Scripts -->
 
 
-  <script src="/js/theme.js" defer></script>
-  <script src="/js/core.js" defer></script>
+  <script src="/js/theme.js" ></script>
+  <script src="/js/core.js" ></script>
 
-  <script src="/js/admin.js" defer></script>
-  <script src="/js/app.js" defer></script>
+  <script src="/js/admin.js" ></script>
+  <script src="/js/app.js" ></script>
 
 </head>
 <body class=" site-navbar-small " >
@@ -79,7 +79,6 @@
 
 
   </div>
-
 
 </body>
 

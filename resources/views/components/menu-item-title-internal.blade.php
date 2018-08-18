@@ -1,15 +1,15 @@
- <li class="site-menu-item has-sub">
+ <li class="site-menu-item @isset($hasChilds) {{ $hasChilds }} @endisset">
 
-  <a  data-toggle="dropdown" 
-      href="{{ $route }}" 
-      data-dropdown-toggle="false">
+  <a class="animsition-link" href="{{ $route }}">
     <span class="site-menu-title">{{ $title }}</span>
-    <span class="site-menu-arrow"></span>
+    
   </a>
 
-  
-  <ul class="site-menu-sub">
-		{{ $slot }}
-	</ul>
+  @isset($hasChilds)
+  	<ul class="site-menu-sub">
+			{{ $slot }}
+		</ul>
+	@endisset
        
 </li>
+

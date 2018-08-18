@@ -126,4 +126,9 @@ class CustomerController extends Controller
 
     }
 
+    public function find(Request $request)
+    {
+        return Customer::search($request->get('filter'))->get();
+    }
+
 }

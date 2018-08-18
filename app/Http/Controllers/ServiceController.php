@@ -1,0 +1,151 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Service;
+use App\Models\ServiceType;
+
+use App\Http\Requests\Services\ServiceRequest;
+use Illuminate\Support\Carbon;
+use Facades\App\Models\ServiceWorkflow;
+
+
+class ServiceController extends Controller
+{
+ 
+    /**
+     * Display the service list
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        $services = Service::list( $request->all() );
+        $request->flash();  
+        return view('services.index', ['services' => $services ]);
+    }
+
+    /**
+    * Show the form for creating a new service
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function create(Request $request, $serviceType)
+    {
+    	$serviceType = ServiceType::find( $serviceType );
+        return view('services.new', [ 'serviceType' => $serviceType] );
+    }
+
+
+    /**
+    * Show the form to edit an attribute
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function edit(Request $request, Service $service)
+    {
+      return view('services.edit', [ 'service' => $service] );
+    }
+
+
+
+    public function redirectCreateForm(Request $request)
+    {
+      print_r( $request->all() );
+      return redirect()->route('create-service', ['serviceType' => $request->service_type_id]);
+    }
+
+
+    /**
+    * Store service information.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @return \Illuminate\Http\Response
+    */
+    public function store(ServiceRequest $request)
+    {
+        
+        $service = new Service;
+
+        $data = $request->all();
+
+        $dateTime = $data['service_date'] . " " . $data['time'];
+
+        //Get time from ui to model
+        $dt = Carbon::parse( $dateTime );
+
+        $request->merge(['service_date' => $dt->toDateTimeString() ]);
+
+        //Save attributes as json data
+        $request->merge(['data' => json_encode($request->data) ]);
+
+        //Save service information
+        $service = $service->saveOrUpdate( $request->except(['time', 'filter']) );
+
+        $request->session()->flash('status', __('messages.service_saved_ok', ['service' => $service->id ] ) );
+
+        return back()->withInput();
+
+        //print_r($request->all());
+        //exit;
+        //return view('dashboard');
+    }
+
+
+    /**
+    * Update service information.
+    *
+    * @param  \Illuminate\Http\Request $request
+    * @return \Illuminate\Http\Response
+    */
+    public function update(ServiceRequest $request)
+    {
+        
+        $service = new Service;
+
+        //Check services changes and get the change string for the history
+        $changes = $service->checkChanges($request->all());
+        
+
+        //Update service data/history/events
+        $updated = $service->update( $request->all() );
+        //Launch event on update
+        //
+        
+
+        $request->session()->flash('status', __('messages.service_saved_ok', ['service' => $service->id ] ) );
+        
+        return back()->withInput();
+        
+
+         
+
+        if( isset($request->data) && $request->data  != "") {
+            $request->merge(['data' => json_encode($request->data) ]);
+
+            //Save service information
+            $service = $service->saveOrUpdate( $request->except(['time', 'filter']) );
+
+            $request->session()->flash('status', __('messages.service_saved_ok', ['service' => $service->id ] ) );
+
+            return back()->withInput();    
+        } 
+        
+        //return view('dashboard');
+    }
+
+    public function workflowTest(){
+        $workflow = ServiceWorkflow::defineServiceWorkflow();
+
+        $service = new Service;
+
+        //Get service transitions
+        $transitions = $workflow->getEnabledTransitions($service);
+        foreach( $transitions as $item){
+            print_r($item->getName());
+            print_r($item->getFroms());
+            print_r($item->getTos());
+        }
+    }
+}

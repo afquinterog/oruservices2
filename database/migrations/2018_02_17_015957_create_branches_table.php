@@ -18,6 +18,7 @@ class CreateBranchesTable extends Migration
             $table->string('code');
             $table->string('name');
             $table->string('address');
+            $table->integer('company_id')->unsigned()->index();
             $table->softDeletes();
             $table->timestamps();
         });

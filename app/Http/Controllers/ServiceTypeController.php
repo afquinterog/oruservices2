@@ -123,19 +123,13 @@ class ServiceTypeController extends Controller
      */
     public function storeTask(Request $request)
     {
-        //dd($request);
         $serviceType = ServiceType::find($request->service);
-        
         $task = new Task;
-
         $task->order = $serviceType->nextTaskOrder();
-
         $task->fill( $request->all() );
-
         $serviceType->tasks()->save( $task );
         
         request()->session()->flash('status', __('messages.saved_ok'));
-
         request()->session()->flash('tab', 'tasks' );
 
         return redirect()->route('service-type-edit', [ 'serviceType' => $serviceType->id ]);

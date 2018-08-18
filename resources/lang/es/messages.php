@@ -11,6 +11,8 @@ return [
 	'saved_ok' => 'Datos guardados correctamente.',
 	'deleted_ok' => 'Datos eliminados correctamente',
 
+    'basic_information' => 'Información básica',
+
 	//Service types
     'service_types_title' => 'Tipos de servicios',
     'service_types_column_name' => 'Nombre',
@@ -69,5 +71,10 @@ return [
     
     //Edit basic information
     'roles_basic_information' => 'Datos básicos',    
+
+    //Servicios
+    'service_create_attributes_title' => 'Atributos del servicio',
+
+    'service_saved_ok' => 'El servicio con id :service fue guardado correctamente.',
     
 ];

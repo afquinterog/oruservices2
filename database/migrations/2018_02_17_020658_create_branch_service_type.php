@@ -17,6 +17,7 @@ class CreateBranchServiceType extends Migration
             $table->increments('id');
             $table->integer('branch_id');
             $table->integer('service_type_id');
+            $table->integer('order')->unsigned();
         });
     }
 
@@ -27,8 +28,6 @@ class CreateBranchServiceType extends Migration
      */
     public function down()
     {
-        Schema::table('branch_service_type', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('branch_service_type');
     }
 }

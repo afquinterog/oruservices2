@@ -87,6 +87,38 @@
                 @endcomponent
               </div>
 
+              <div class="form-group col-xs-12 col-md-6">
+                @component('components.forms.form-item-date' )
+                  @slot('title') Fecha de nacimiento @endslot
+                  @slot('name') birthday @endslot
+                  
+                @endcomponent
+              </div>
+
+            </div>
+
+            <div class="row">
+
+              <div class="form-group col-xs-12 col-md-12">
+
+                @component('components.forms.form-item-autocomplete', [ ] )
+
+                  @slot('title') Seleccionar ciudad  @endslot                    
+                  @slot('name') city_id  @endslot          
+                  @slot('class') city-autocomplete  @endslot
+                  @slot('placeholder') Seleccione ciudad  @endslot
+                  @slot('id') city_id @endslot
+                  @slot('route') /cities/search @endslot
+                  @slot('filter') filter @endslot
+
+                  
+
+                  @slot('display') data.name @endslot
+                  @slot('suggestion') data.name + ' ' +  data.departmentName +  ' ' + data.countryName  @endslot  
+                @endcomponent 
+
+              </div>
+
             </div>
 
           <div class="row">

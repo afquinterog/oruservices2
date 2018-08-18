@@ -11,69 +11,64 @@
             
             @component('components.menu-item-title')
               @slot('title') Dashboard @endslot
-              @slot('route') dashboard @endslot
+              @slot('route') /dashboard @endslot
             @endcomponent 
 
 
-            @component('components.menu-item-title')
+            @component('components.menu-item-title', ['hasChilds' => 'has-sub'])
 
               @slot('title') Empresa @endslot
               @slot('route') javascript::void(0) @endslot           
 
-              @component('components.menu-item-title-internal')
+              @component('components.menu-item-title-internal', ['hasChilds' => 'has-sub'])
 
                 @slot('title') Clientes @endslot
-                @slot('route') javascript::void(0) @endslot     
-
-                  @component('components.menu-item')
-                    @slot('title') Listado @endslot
-                    @slot('route') customers @endslot  
-                  @endcomponent
-
-                   @component('components.menu-item')
-                    @slot('title') Categorias @endslot
-                    @slot('route') categories @endslot  
-                  @endcomponent
+                @slot('route') /customers @endslot    
 
               @endcomponent
 
-              @component('components.menu-item')
+              @component('components.menu-item-title-internal')
                 @slot('title') Sucursales @endslot
-                @slot('route') branches @endslot    
+                @slot('route') /branches @endslot    
               @endcomponent
 
             @endcomponent
 
 
-            @component('components.menu-item-title')
+            @component('components.menu-item-title',  ['hasChilds' => 'has-sub'])
               @slot('title') Usuarios @endslot
               @slot('route') javascript::void(0) @endslot           
 
-                @component('components.menu-item')
+                @component('components.menu-item-title-internal')
                   @slot('title') Listado @endslot
-                  @slot('route') users @endslot    
+                  @slot('route') /users @endslot    
                 @endcomponent
 
-                @component('components.menu-item')
+                @component('components.menu-item-title-internal')
                   @slot('title') Roles @endslot
-                  @slot('route') roles @endslot    
+                  @slot('route') /roles @endslot    
                 @endcomponent
 
             @endcomponent
 
 
-            @component('components.menu-item-title')
+            @component('components.menu-item-title',  ['hasChilds' => 'has-sub'])
               @slot('title') Servicios @endslot
               @slot('route') javascript::void(0) @endslot           
 
-                @component('components.menu-item')
+                @component('components.menu-item-title-internal')
                   @slot('title') Tipos de servicio @endslot
-                  @slot('route') service-types @endslot    
+                  @slot('route') /service-types @endslot    
                 @endcomponent
 
-                @component('components.menu-item')
+                @component('components.menu-item-title-internal')
                   @slot('title') Atributos @endslot
-                  @slot('route') attributes @endslot    
+                  @slot('route') /attributes @endslot    
+                @endcomponent
+
+                 @component('components.menu-item-title-internal')
+                  @slot('title') Listado @endslot
+                  @slot('route') /services @endslot    
                 @endcomponent
 
             @endcomponent
