@@ -135,6 +135,29 @@ class ServiceTypeTest extends TestCase
         $response->assertSee( "<td>" . $task->name . "</td>");
     }
 
+    /**
+     * A user can assign a role to a service type
+     *
+     * @return void
+     */
+    public function testAUserCanAssignARoleToAServiceType()
+    {
+
+        $role = factory('App\Models\Role')->create();
+
+        $params = array(
+            'role' => $role->id,
+            'service'   => $this->serviceType->id 
+        );
+
+        $this->actingAs($this->user)->post('service-types/store/role', $params );
+
+        $response = $this->actingAs($this->user)
+                         ->get("service-types/edit/{$this->serviceType->id}" );
+        
+        $response->assertSee( "<td>" . $role->name . "</td>");
+    }
+
 
     /**
      * A user can remove an attribute from a service type

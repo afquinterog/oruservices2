@@ -78,6 +78,16 @@ class ServiceType extends Model
   }
 
   /**
+  * The notifications asociated with this service type
+  */
+  public function notifications()
+  {
+      return $this->hasMany('App\Models\ServiceTypeNotification');
+  }
+
+
+
+  /**
   * The next order of serviceType's attribute
   */
   public function nextAttributeOrder()

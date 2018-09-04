@@ -3,12 +3,19 @@
   Autocomplete Usage
   
 
- 	@component('components.forms.form-item-select', [ 'items' => $branches ] )
+ 	@component('components.forms.form-item-select', [ 'items' => $branches, 'selected' => $selectedId, 'nameProperty' => 'description' ] )
 	  @slot('title') Sucursal @endslot
 	  @slot('name') branch @endslot
 	@endcomponent 
 
   --}}
+
+ 	@if (isset($nameProperty))
+		@php $nameProperty = $nameProperty; @endphp
+	@else
+  	@php $nameProperty = "name"; @endphp
+	@endif
+
 
 <label class="form-control-label" 
 			 for="{{ $name }}">
@@ -21,7 +28,7 @@
      <option value='{{ $item->id }}' 
      	{{ isset($selected) && $item->id == $selected ? "selected='selected'" : "" }}'
      	> 
-     	{{ $item->name }} 
+     	{{ $item->$nameProperty }} 
      </option>
 	@endforeach
 

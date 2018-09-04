@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\Database;
-
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 
 class Service extends Model
 {
@@ -63,6 +63,26 @@ class Service extends Model
   {
   	return $this->belongsTo('App\Models\ServiceStatus', 'service_status_id');
   }
+
+
+  public function processData( $service )
+  {
+    //load relations
+    $service->load("serviceType.attributes");
+
+    $service->data = json_decode( $service->data );
+
+    //Get attributes
+    $service->customAttributes = $service->serviceType->attributes()->get();
+    
+    foreach( $service->customAttributes as $item){
+      $attributeName = $item->code ;
+      $item->value = $service->data->$attributeName ?? "";
+    }
+    
+    return $service;
+  }
+  
 
 
   /**
@@ -126,6 +146,27 @@ class Service extends Model
 
   }
 
+  /**
+   * Process data 
+   *
+   * @param array $data 
+   */
+  public function beforeSave(array $data)
+  {
+
+    //Get time from ui to model
+    $dateTime = $data['service_date'] . " " . $data['time'] ;
+    $dt = Carbon::parse( $dateTime );
+    $data['service_date'] = $dt->toDateTimeString() ;
+    unset( $data['time'] );
+
+    //Encode service attributes
+    $data['data'] = json_encode( $data['data'] );
+
+    return $data; 
+  }
+
+
 	/**
    * Save or update the model information
    *
@@ -133,6 +174,11 @@ class Service extends Model
    */
   public function saveOrUpdate(array $data)
   {
+    $data = $this->beforeSave($data);
+
+    //Check services changes and get the change string for the history
+    $changes = $this->checkChanges($request->all());
+        
     return $this->persist( Service::class, $data);		
   }
 

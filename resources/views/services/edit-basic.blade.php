@@ -3,10 +3,10 @@
 
   <div class="div-wrap">
 
-    <form action="/service/update" method="POST">
+    <form action="/service/update" method="PUT">
 
       {{ method_field('POST') }}
-      <input type="hidden" name="service_type_id" value="{{ $service->id}}">
+      <input type="hidden" name="id" value="{{ $service->id}}">
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
       <h4 class="div-title">{{ __('messages.basic_information') }}</h4>
@@ -78,10 +78,26 @@
 
                 @component('components.forms.form-item-select', 
                            [ 'items' => $service->serviceType->branches, 
-                             'selected' => $service->branch_id] )
+                             'selected' => $service->branch_id
+                           ] )
                   @slot('title') Sucursal @endslot
                   @slot('name') branch_id @endslot
                   
+                @endcomponent 
+              
+            </div>
+          </div>
+
+          <div class="row">
+             <div class="form-group col-xs-12 col-md-12">
+
+                @component('components.forms.form-item-select', 
+                           [ 'items' => $statuses, 
+                             'selected' => $service->service_status_id,
+                             'nameProperty' => "description"
+                            ])
+                  @slot('title') Estado @endslot
+                  @slot('name') service_status_id @endslot
                 @endcomponent 
               
             </div>
@@ -100,21 +116,21 @@
           </div>
 
          
-      </div>)
+      </div>
 
       <h4 class="div-title">{{ __('messages.service_create_attributes_title') }}</h4>
 
       <div class="group">
 
 
-        {{-- @foreach ($service->data as $item)
+        @foreach ($service->customAttributes as $item)
 
           <div class="form-group col-xs-12 col-md-12">
             @component('components.services.form-create-attribute', [ 'item' => $item ] )
             @endcomponent
           </div>
 
-        @endforeach --}}
+        @endforeach
 
 
       </div>

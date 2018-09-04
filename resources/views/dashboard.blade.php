@@ -16,7 +16,9 @@
             <ul class="nav nav-tabs nav-tabs-line" role="tablist">
 
               <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#registerService" aria-controls="exampleTopHome" role="tab" aria-expanded="true"><i class="icon wb-plugin" aria-hidden="true"></i>Registrar servicio</a>
+                <a class="nav-link active" data-toggle="tab" href="#registerService" aria-controls="exampleTopHome" role="tab" aria-expanded="true">
+                	{{-- <i class="icon wb-plugin" aria-hidden="true"></i> --}}
+                Registrar servicio</a>
               </li>
 
 

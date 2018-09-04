@@ -7,6 +7,9 @@ return [
 	'edit' => 'Editar',
 	'disable' => 'Desactivar',
 	'delete' => 'Borrar',
+    'save' => 'Guardar',
+    'filter' => 'Filtro',
+    'search' => 'Buscar',
 
 	'saved_ok' => 'Datos guardados correctamente.',
 	'deleted_ok' => 'Datos eliminados correctamente',
@@ -76,5 +79,19 @@ return [
     'service_create_attributes_title' => 'Atributos del servicio',
 
     'service_saved_ok' => 'El servicio con id :service fue guardado correctamente.',
+
+    //companies
+    'companies_title' => 'Compañias',
+    'companies_code' => 'Código',
+    'companies_name' => 'Nombre',
+    'companies_description' => 'Descripción',
+
+    'company_create_title' => 'Crear/Editar Compañia',
+    'company_code' => 'Código',
+    'company_name' => 'Nombre',
+    'company_description' => 'Descripción',
+
+
+
     
 ];

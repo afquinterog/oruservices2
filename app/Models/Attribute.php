@@ -33,7 +33,7 @@ class Attribute extends Model
   *
   * @var array
   */
-  protected $fillable = ['name', 'attribute_type_id', 'active'];
+  protected $fillable = ['name', 'code', 'attribute_type_id', 'active'];
 
 	/**
    * The attribute type 
@@ -66,6 +66,8 @@ class Attribute extends Model
    */
   public function saveOrUpdate(array $data)
   {
+    $data['code'] = str_replace(" ","_",$data['name']);
+
     return $this->persist( Attribute::class, $data);  
   }
 

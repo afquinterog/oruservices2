@@ -2,6 +2,7 @@
 
 @php
   $item->htmlName = "attr_" . $item->name;
+  $value = $item->value ?? "";
 @endphp
 
 @if ( $item->attribute_type_id === App\Models\Attribute::TYPE_TEXT )
@@ -10,7 +11,7 @@
 	  @slot('title') {{ $item->name }} @endslot
 	  @slot('placeholder') {{ $item->name }} @endslot
 	  @slot('name') {{ "data[" . $item->code . "]" }} @endslot
-	  @slot('value')   @endslot
+	  @slot('value') {{ $value }}  @endslot
 	@endcomponent
 
 @endif 
@@ -21,7 +22,7 @@
 	  @slot('title') {{ $item->name }} @endslot
 	  @slot('placeholder') {{ $item->name }} @endslot
 	  @slot('name') "data[" . $item->code . "]" }} @endslot
-	  @slot('value') {{ $item->attribute_type_id }}  @endslot
+	  @slot('value') {{ $value }}  @endslot
 	@endcomponent
 
 @endif 
@@ -32,7 +33,7 @@
 	  @slot('title') {{ $item->name }} @endslot
 	  @slot('placeholder') {{ $item->name }} @endslot
 	  @slot('name') {{ "data[" . $item->code . "]" }} @endslot
-	  @slot('value') {{ $item->attribute_type_id }}  @endslot
+	  @slot('value') {{ $value }}  @endslot
 	@endcomponent
 
 @endif 
@@ -43,6 +44,7 @@
     @slot('title') {{ $item->name }} @endslot
     @slot('placeholder') {{ $item->name }}  @endslot
     @slot('name') {{ "data[" . $item->code . "]" }} @endslot
+    @slot('value') {{ $value }}  @endslot
   @endcomponent
 
 @endif 
@@ -53,6 +55,7 @@
     @slot('title') {{ $item->name }} @endslot
     @slot('placeholder')  @endslot
     @slot('name') {{ $item->htmlName }} @endslot
+     @slot('value') {{ $value }}  @endslot
   @endcomponent
 
 @endif 
@@ -63,6 +66,7 @@
     @slot('title') {{ $item->name }} @endslot
     @slot('placeholder') {{ $item->name }}  @endslot
      @slot('name') {{ $item->htmlName }} @endslot
+      @slot('value') {{ $value }}  @endslot
   @endcomponent
 
 @endif 

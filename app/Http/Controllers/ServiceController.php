@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Service;
+use Facades\App\Models\Service as ServiceFacade;
 use App\Models\ServiceType;
+use Facades\App\Models\ServiceStatus;
 
 use App\Http\Requests\Services\ServiceRequest;
-use Illuminate\Support\Carbon;
 use Facades\App\Models\ServiceWorkflow;
 
 
@@ -31,9 +32,9 @@ class ServiceController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function create(Request $request, $serviceType)
+    public function create(Request $request, ServiceType $serviceType)
     {
-    	$serviceType = ServiceType::find( $serviceType );
+    	//$serviceType = ServiceType::find( $serviceType );
         return view('services.new', [ 'serviceType' => $serviceType] );
     }
 
@@ -45,14 +46,24 @@ class ServiceController extends Controller
     */
     public function edit(Request $request, Service $service)
     {
-      return view('services.edit', [ 'service' => $service] );
+        ServiceFacade::processData($service);
+        $statuses = ServiceStatus::all();
+
+        return view('services.edit', compact('service','statuses') );
     }
+
+
+    
+    // public function update(Request $request, Service $id)
+    // {
+    //     echo $service->cost;
+    //     exit;
+    // }
 
 
 
     public function redirectCreateForm(Request $request)
     {
-      print_r( $request->all() );
       return redirect()->route('create-service', ['serviceType' => $request->service_type_id]);
     }
 
@@ -65,23 +76,8 @@ class ServiceController extends Controller
     */
     public function store(ServiceRequest $request)
     {
-        
-        $service = new Service;
 
-        $data = $request->all();
-
-        $dateTime = $data['service_date'] . " " . $data['time'];
-
-        //Get time from ui to model
-        $dt = Carbon::parse( $dateTime );
-
-        $request->merge(['service_date' => $dt->toDateTimeString() ]);
-
-        //Save attributes as json data
-        $request->merge(['data' => json_encode($request->data) ]);
-
-        //Save service information
-        $service = $service->saveOrUpdate( $request->except(['time', 'filter']) );
+        $service = ServiceFacade::saveOrUpdate( $request->except(['filter']) );
 
         $request->session()->flash('status', __('messages.service_saved_ok', ['service' => $service->id ] ) );
 
@@ -93,6 +89,14 @@ class ServiceController extends Controller
     }
 
 
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     /**
     * Update service information.
     *
@@ -102,17 +106,9 @@ class ServiceController extends Controller
     public function update(ServiceRequest $request)
     {
         
-        $service = new Service;
-
-        //Check services changes and get the change string for the history
-        $changes = $service->checkChanges($request->all());
-        
-
-        //Update service data/history/events
-        $updated = $service->update( $request->all() );
-        //Launch event on update
         //
-        
+        $service = ServiceFacade::saveOrUpdate($request->all());
+
 
         $request->session()->flash('status', __('messages.service_saved_ok', ['service' => $service->id ] ) );
         

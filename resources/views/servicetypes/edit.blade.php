@@ -111,8 +111,11 @@
           @endcomponent
 
           @component('components.forms.tab-item', [ 'active' => session('tab') ])
+              
               @slot('name') notifications @endslot
-              this is the data for the notifications
+
+               @include('servicetypes.edit-notifications')
+
           @endcomponent
 
         @endslot

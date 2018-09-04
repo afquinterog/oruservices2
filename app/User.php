@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'company_id'
     ];
 
     /**
@@ -38,6 +38,10 @@ class User extends Authenticatable
     public function company()
     {
       return $this->belongsTo('App\Models\Company');
+    }
+
+    public function getRoleName(){
+        return auth()->user()->roles()->first()->name;
     }
              
 

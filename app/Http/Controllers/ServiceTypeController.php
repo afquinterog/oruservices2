@@ -10,6 +10,9 @@ use App\Models\Attribute;
 use App\Models\Task;
 use App\Models\Branch;
 use App\Models\Role;
+use Facades\App\Models\NotificationEvent;
+use Facades\App\Models\NotificationType;
+use App\Models\ServiceTypeNotification;
 use App\Http\Requests\ServiceTypes\BasicRequest;
 
 
@@ -60,19 +63,22 @@ class ServiceTypeController extends Controller
      */
     public function edit(ServiceType $serviceType)
     {
-        $serviceType->load("attributes.attributeType");
+        $serviceType->load("attributes.attributeType", "branches", "roles", "notifications.event");
 
         $attributes = Attribute::list();
-
-        $serviceType->load("branches");   
-
         $branches = Branch::list();
-
-        $serviceType->load("roles");   
-
         $roles = Role::list();
+        $notificationEvents = NotificationEvent::list();
+        $notificationTypes = NotificationType::list();
 
-        return view('servicetypes.edit', ['serviceType' => $serviceType, 'attributes' => $attributes, 'branches' => $branches, 'roles' => $roles ]);
+        //$serviceType->load("branches");   
+        //$serviceType->load("roles");   
+
+        return view('servicetypes.edit', ['serviceType' => $serviceType, 'attributes' => $attributes, 
+                                           'branches' => $branches, 'roles' => $roles,
+                                           'notificationEvents' => $notificationEvents,
+                                           'notificationTypes' => $notificationTypes
+                                       ]);
     }
 
     /**
@@ -143,7 +149,7 @@ class ServiceTypeController extends Controller
      */
     public function storeBranch(Request $request)
     {
-        
+        //
         $serviceType = ServiceType::find( $request->service );
 
         $order = $serviceType->nextBranchOrder();
@@ -179,6 +185,27 @@ class ServiceTypeController extends Controller
         return redirect()->route('service-type-edit', [ 'serviceType' => $serviceType->id ]);
     }
 
+    /**
+     * Store a notification linked with the service type
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeNotification(Request $request)
+    {
+        
+        $serviceType = ServiceType::find( $request->service );
+
+        $notification = new ServiceTypeNotification( $request->all() );
+
+        $notifications = $serviceType->notifications()->save($notification);
+
+        request()->session()->flash('status', __('messages.saved_ok'));
+        request()->session()->flash( 'tab', "notifications" );
+
+        return redirect()->route('service-type-edit', [ 'serviceType' => $serviceType->id ]);
+    }
+
 
     /**
      * Display the specified resource.
@@ -189,6 +216,25 @@ class ServiceTypeController extends Controller
     public function show($id)
     {
         //
+    }
+
+    /**
+    * Delete the notification on the service type
+    *
+    * @param  int  $attribute
+    * @return \Illuminate\Http\Response
+    */
+    public function deleteNotification(Request $request, ServiceTypeNotification $notification)
+    {
+        $notification->delete();
+
+        //$serviceType->notifications()->destroy( $notification->id);
+
+        request()->session()->flash('status', __('messages.deleted_ok'));
+
+        request()->session()->flash('tab', "notifications" );
+
+        return back()->withInput();
     }
 
     /**

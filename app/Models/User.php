@@ -7,7 +7,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\Database;
 
-class User extends Model
+class User2 extends Model
 {
 
 	use ValidatesRequests;

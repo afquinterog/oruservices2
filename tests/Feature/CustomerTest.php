@@ -34,40 +34,39 @@ class CustomerTest extends TestCase
 
         $response = $this->actingAs($this->user)->get('/customers');
 
-        $response->assertSee( $customer->name );
+        $response->assertSee( $customer->firstname );
     }
 
     /**
-     * A user can edit a branch
+     * A user can edit a customer
      *
      * @return void
      */
-    public function testAUserCanEditABranch()
+    public function testAUserCanEditACustomer()
     {   
 
-        $this->branch->name = "SampleName";
+        $this->customer->firstName = "SampleName";
 
         $response = $this->actingAs($this->user)
-                         ->post('/branches/store', $this->branch->toArray() );
+                         ->post('/customers/store', $this->customer->toArray() );
 
-        $response = $this->actingAs($this->user)->get('/branches/edit/' .  $this->branch->id );
+        $response = $this->actingAs($this->user)->get('/customers/edit/' .  $this->customer->id );
 
-        $response->assertSee( $this->branch->name );
+        $response->assertSee( $this->customer->firstName );
     }
 
 
     /**
-     * A user can view the branch list
+     * A user can view the customer list
      *
      * @return void
      */
-    public function testAUserCanViewBranches()
+    public function testAUserCanViewCustomers()
     {
-        //$this->artisan('migrate:fresh');
         
-        $response = $this->actingAs($this->user)->get('/branches');
+        $response = $this->actingAs($this->user)->get('/customers');
 
-        $response->assertSee( $this->branch->name );
+        $response->assertSee( $this->customer->firstname );
     }
 
     /**
@@ -75,13 +74,13 @@ class CustomerTest extends TestCase
      *
      * @return void
      */
-    public function testAUserCanViewABranch()
+    public function testAUserCanViewACustomer()
     {
 
         $response = $this->actingAs($this->user)
-                         ->get('/branches/edit/' . $this->branch->id );
+                         ->get('/customers/edit/' . $this->customer->id );
 
-        $response->assertSee( $this->branch->name );
+        $response->assertSee( $this->customer->firstname );
     }
 
 

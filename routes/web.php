@@ -19,7 +19,7 @@ Auth::routes();
 Route::group([ 'middleware' => 'auth'], function(){
 
 	//Dashboard
-	Route::get('/', 'HomeController@index');
+	Route::get('/', 'DashboardController@index');
 	Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
 
@@ -28,6 +28,7 @@ Route::group([ 'middleware' => 'auth'], function(){
 	Route::post('/service/create', 'ServiceController@redirectCreateForm');
 	Route::get('/services/edit/{service}', 'ServiceController@edit');
 	Route::post('/service/store', 'ServiceController@store');
+	Route::put('/services/{service}', 'ServiceController@update');
 	Route::get('/services', 'ServiceController@index');
 
 	//Services types routes
@@ -41,6 +42,8 @@ Route::group([ 'middleware' => 'auth'], function(){
 	Route::post('service-types/store/task', 'ServiceTypeController@storeTask');
 	Route::post('service-types/store/branch', 'ServiceTypeController@storeBranch');
 	Route::post('service-types/store/role', 'ServiceTypeController@storeRole');
+	Route::post('service-types/store/notification', 'ServiceTypeController@storeNotification');
+	
 	
 
 	//Attributes routes
@@ -127,5 +130,28 @@ Route::group([ 'middleware' => 'auth'], function(){
 	//Define workflow
 	Route::get('workflow', 'ServiceController@workflowTest');
 
+
+	//Routes for the users management module
+	Route::get('modules/users/list', 'UserModuleController@index' );
+	Route::post('modules/users/store', 'UserModuleController@store' );
+	Route::get('modules/users/new', 'UserModuleController@create');
+	Route::get('modules/users/edit/{id}', 'UserModuleController@edit');
+
+	//Companies routes
+	Route::get('/companies', 'CompanyController@index');
+	Route::get('/companies/create', 'CompanyController@create');
+	Route::get('/companies/edit/{id}', 'CompanyController@edit');
+	Route::put('/companies/update/{id}', 'CompanyController@update');
+	Route::post('/companies/store', 'CompanyController@store');	
+	Route::get('/companies/delete/{id}', 'CompanyController@destroy');
+
+	Route::get('notifications/delete/{notification}', 'ServiceTypeController@deleteNotification') ;
+
+
 });
+
+
+
+
+
 
