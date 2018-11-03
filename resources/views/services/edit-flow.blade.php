@@ -1,0 +1,1 @@
+<img class="img-fluid" src="{{ url("assets/services/service-status-" . $service->service_status_id . ".png") }}" alt="">

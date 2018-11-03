@@ -2,3 +2,7 @@
 .customTabContent{
 	padding: 5px 30px;
 }
+
+.datepicker-dropdown{
+	z-index: 2000;
+}

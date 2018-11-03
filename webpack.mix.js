@@ -50,6 +50,8 @@ mix.styles([
       'resources/assets/template/global/vendor/typeahead-js/typeahead.css',
       
       'resources/assets/template/global/vendor/datatables-bootstrap/dataTables.bootstrap.css',
+      'resources/assets/template/global/vendor/fullcalendar/fullcalendar.css',
+      'resources/assets/template/global/vendor/fullcalendar/calendar_custom.css',
 
       
       
@@ -90,6 +92,11 @@ mix.scripts([
   'resources/assets/template/global/vendor/jt-timepicker/jquery.timepicker.min.js',
 
   'resources/assets/template/global/vendor/typeahead-js/typeahead.bundle.min.js',
+
+  'resources/assets/template/global/vendor/moment/moment.min.js',
+  'resources/assets/template/global/vendor/fullcalendar/fullcalendar.js',
+  
+
   
 
   //'resources/assets/template/global/vendor/ascolor/jjquery-asColor.min.js', 

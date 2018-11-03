@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\Database;
+use Illuminate\Support\Facades\DB;
 
 use Nicolaslopezj\Searchable\SearchableTrait;
 
@@ -53,11 +54,11 @@ class Customer extends Model
   }
 
   /**
-  * The categories related to the customer
+  * The customer category
   */
-  public function categories()
+  public function category()
   {
-      return $this->belongsto('App\Models\Category');
+      return $this->belongsto('App\Models\Category')->withDefault();;
   }
 
   /**
@@ -76,6 +77,11 @@ class Customer extends Model
 
     return $this->categories()->max('order') + 1 ;
     
+  }
+
+  public function servicesCount()
+  {
+    return DB::table('services')->where('customer_id', $this->id)->count();
   }
 
   public function name(){

@@ -20,11 +20,13 @@ class CreateServicesTable extends Migration
             $table->string('service_type_id');
             $table->integer('service_status_id')->default(1);
             $table->integer('cost')->default(0);
+            $table->text('custom');
             $table->date('service_date');
             $table->date('finish_date')->nullable();
             $table->integer('rating')->nullable();
             $table->integer('branch_id')->index();
             $table->integer('company_id')->index();
+            $table->integer('resource_id')->index();
             $table->softDeletes();
             $table->timestamps();
         });

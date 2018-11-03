@@ -10,7 +10,7 @@
 	@component('components.forms.form-item-text')
 	  @slot('title') {{ $item->name }} @endslot
 	  @slot('placeholder') {{ $item->name }} @endslot
-	  @slot('name') {{ "data[" . $item->code . "]" }} @endslot
+	  @slot('name') {{ "custom[" . $item->code . "]" }} @endslot
 	  @slot('value') {{ $value }}  @endslot
 	@endcomponent
 
@@ -21,7 +21,7 @@
 	@component('components.forms.form-item-text')
 	  @slot('title') {{ $item->name }} @endslot
 	  @slot('placeholder') {{ $item->name }} @endslot
-	  @slot('name') "data[" . $item->code . "]" }} @endslot
+	  @slot('name') "custom[" . $item->code . "]" }} @endslot
 	  @slot('value') {{ $value }}  @endslot
 	@endcomponent
 
@@ -32,7 +32,7 @@
 	@component('components.forms.form-item-text')
 	  @slot('title') {{ $item->name }} @endslot
 	  @slot('placeholder') {{ $item->name }} @endslot
-	  @slot('name') {{ "data[" . $item->code . "]" }} @endslot
+	  @slot('name') {{ "custom[" . $item->code . "]" }} @endslot
 	  @slot('value') {{ $value }}  @endslot
 	@endcomponent
 
@@ -43,7 +43,7 @@
 	@component('components.forms.form-item-date')
     @slot('title') {{ $item->name }} @endslot
     @slot('placeholder') {{ $item->name }}  @endslot
-    @slot('name') {{ "data[" . $item->code . "]" }} @endslot
+    @slot('name') {{ "custom[" . $item->code . "]" }} @endslot
     @slot('value') {{ $value }}  @endslot
   @endcomponent
 

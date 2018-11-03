@@ -46,20 +46,14 @@ class ServiceController extends Controller
     */
     public function edit(Request $request, Service $service)
     {
-        ServiceFacade::processData($service);
+        ServiceFacade::getAdditionalData($service);
+
+        $audits = $service->audits;
+
         $statuses = ServiceStatus::all();
 
         return view('services.edit', compact('service','statuses') );
     }
-
-
-    
-    // public function update(Request $request, Service $id)
-    // {
-    //     echo $service->cost;
-    //     exit;
-    // }
-
 
 
     public function redirectCreateForm(Request $request)
@@ -103,11 +97,11 @@ class ServiceController extends Controller
     * @param  \Illuminate\Http\Request $request
     * @return \Illuminate\Http\Response
     */
-    public function update(ServiceRequest $request)
+    public function update(ServiceRequest $request, $id)
     {
         
-        //
-        $service = ServiceFacade::saveOrUpdate($request->all());
+        
+        $service = ServiceFacade::saveOrUpdate($request->except('filter'));
 
 
         $request->session()->flash('status', __('messages.service_saved_ok', ['service' => $service->id ] ) );
@@ -117,16 +111,16 @@ class ServiceController extends Controller
 
          
 
-        if( isset($request->data) && $request->data  != "") {
-            $request->merge(['data' => json_encode($request->data) ]);
+        // if( isset($request->data) && $request->data  != "") {
+        //     $request->merge(['data' => json_encode($request->data) ]);
 
-            //Save service information
-            $service = $service->saveOrUpdate( $request->except(['time', 'filter']) );
+        //     //Save service information
+        //     $service = $service->saveOrUpdate( $request->except(['time', 'filter']) );
 
-            $request->session()->flash('status', __('messages.service_saved_ok', ['service' => $service->id ] ) );
+        //     $request->session()->flash('status', __('messages.service_saved_ok', ['service' => $service->id ] ) );
 
-            return back()->withInput();    
-        } 
+        //     return back()->withInput();    
+        // } 
         
         //return view('dashboard');
     }
@@ -134,7 +128,9 @@ class ServiceController extends Controller
     public function workflowTest(){
         $workflow = ServiceWorkflow::defineServiceWorkflow();
 
-        $service = new Service;
+        $service = Service::find(15);
+
+        print_r( $service );
 
         //Get service transitions
         $transitions = $workflow->getEnabledTransitions($service);

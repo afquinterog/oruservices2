@@ -71,7 +71,7 @@
 
 
       <div class="data table-responsive">
-        <table class="table table-bordered">
+        <table class="table table-bordered" data-mobile-responsive="true">
           <thead>
             <tr>
             	{{ $columns }}

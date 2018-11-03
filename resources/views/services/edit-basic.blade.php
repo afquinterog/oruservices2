@@ -3,10 +3,13 @@
 
   <div class="div-wrap">
 
-    <form action="/service/update" method="PUT">
+    <form action="/services/{{$service->id}}" method="POST">
 
-      {{ method_field('POST') }}
+       @method('PUT')
+
+
       <input type="hidden" name="id" value="{{ $service->id}}">
+      <input type="hidden" name="service_type_id" value="{{ $service->service_type_id}}">
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
       <h4 class="div-title">{{ __('messages.basic_information') }}</h4>
@@ -61,6 +64,7 @@
                 @slot('id') customer_id @endslot
                 @slot('route') /find @endslot
                 @slot('filter') filter @endslot
+                @slot('selectedId') {{ $service->customer_id }} @endslot
 
 
                 @slot('display') data.firstname + ' ' + data.lastname @endslot
@@ -91,14 +95,38 @@
           <div class="row">
              <div class="form-group col-xs-12 col-md-12">
 
-                @component('components.forms.form-item-select', 
-                           [ 'items' => $statuses, 
-                             'selected' => $service->service_status_id,
-                             'nameProperty' => "description"
-                            ])
-                  @slot('title') Estado @endslot
-                  @slot('name') service_status_id @endslot
-                @endcomponent 
+                <label  class="form-control-label"  for="service_status"> 
+                        Estado
+                </label>
+
+                <input type="text" 
+                     class="form-control"
+                     name="" 
+                     readonly
+                     value="{{ $service->status->description}}" />
+                            
+            </div>
+          </div>
+
+          <div class="row">
+             <div class="form-group col-xs-12 col-md-12">
+
+                <label class="form-control-label" 
+                       for="">
+                      {{ "Cambiar estado" }}
+                </label>
+
+                <select class="form-control" name="transition">
+                  <option value=''> 
+                    Seleccionar nuevo estado
+                  </option>
+                  @foreach ($service->transitions as $item )
+                     <option value='{{ $item->getName() }}'> 
+                      {{ $item->description }} 
+                     </option>
+                  @endforeach
+
+                </select>
               
             </div>
           </div>

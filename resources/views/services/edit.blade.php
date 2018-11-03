@@ -30,6 +30,16 @@
             @slot('name') basic @endslot        
           @endcomponent 
 
+          @component('components.forms.tab-title', [ 'active' => session('tab') ])
+            @slot('title') Historial @endslot
+            @slot('name') history @endslot        
+          @endcomponent 
+
+          @component('components.forms.tab-title', [ 'active' => session('tab') ])
+            @slot('title') Flujo del servicio @endslot
+            @slot('name') flow @endslot        
+          @endcomponent 
+
         @endslot 
         
 
@@ -37,9 +47,17 @@
 
           @component('components.forms.tab-item', [ 'active' => session('tab', 'basic') ])
               @slot('name') basic @endslot
-              
               @include('services.edit-basic')
+          @endcomponent
 
+          @component('components.forms.tab-item', [ 'active' => session('tab') ])
+              @slot('name') history @endslot
+              @include('services.edit-history')
+          @endcomponent
+
+          @component('components.forms.tab-item', [ 'active' => session('tab') ])
+              @slot('name') flow @endslot
+              @include('services.edit-flow')
           @endcomponent
 
         @endslot

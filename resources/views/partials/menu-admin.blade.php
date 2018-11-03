@@ -68,3 +68,19 @@
     @endcomponent
 
 @endcomponent
+
+@component('components.menu-item-title', ['hasChilds' => 'has-sub'])
+  @slot('title') Reportes @endslot
+  @slot('route') javascript::void(0) @endslot
+
+  @component('components.menu-item')
+    @slot('title') Listado @endslot
+    @slot('route') reports @endslot
+  @endcomponent
+
+  @component('components.menu-item')
+    @slot('title') Mis Reportes @endslot
+    @slot('route') reports-user @endslot
+  @endcomponent
+
+@endcomponent

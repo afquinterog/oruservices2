@@ -41,4 +41,12 @@ class Company extends Model
 		return $this->persist( Company::class, $data);
 	}
 
+	/**
+  * Company reports
+  */
+  public function reports()
+  {
+    return $this->belongsToMany('App\Models\Report');
+  }
+
 }

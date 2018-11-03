@@ -28,6 +28,7 @@ Route::group([ 'middleware' => 'auth'], function(){
 	Route::post('/service/create', 'ServiceController@redirectCreateForm');
 	Route::get('/services/edit/{service}', 'ServiceController@edit');
 	Route::post('/service/store', 'ServiceController@store');
+	//Route::put('/services/update', 'ServiceController@update');
 	Route::put('/services/{service}', 'ServiceController@update');
 	Route::get('/services', 'ServiceController@index');
 
@@ -145,7 +146,17 @@ Route::group([ 'middleware' => 'auth'], function(){
 	Route::post('/companies/store', 'CompanyController@store');	
 	Route::get('/companies/delete/{id}', 'CompanyController@destroy');
 
+
+	Route::get('calendar', 'CalendarController@index');
+
 	Route::get('notifications/delete/{notification}', 'ServiceTypeController@deleteNotification') ;
+
+	//Show report list
+	Route::get('/reports','ReportsController@index'); //reports-list
+	Route::get('/report/{id}','ReportsController@view'); //reports-view
+	Route::post('report/execute', 'ReportsController@execute');
+	Route::get('/reports-user', 'ReportsController@reportUser')->name('reportsUser'); //reports-user
+	Route::get('/report-user/download/{id}', 'ReportsController@reportDownload'); //report-download
 
 
 });

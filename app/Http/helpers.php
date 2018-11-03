@@ -7,6 +7,8 @@
  * @param  string $value The value to apply the format
  * @return string
  */
-function allQueryFormat($string){
-	return isset( $string ) ? '%' . $string . '%' : '%';
+if (! function_exists('allQueryFormat')) {
+	function allQueryFormat($string){
+		return isset( $string ) ? '%' . $string . '%' : '%';
+	}
 }
