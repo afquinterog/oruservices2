@@ -77,8 +77,24 @@
     @component('partials.footer')
     @endcomponent
 
-
   </div>
+
+  <script src="/js/theme.js" ></script>
+  <script src="/js/core.js" ></script>
+
+  <script src="/js/admin.js" ></script>
+  <script src="/js/app.js" ></script>
+
+  
+  <script>
+    (function(document, window, $) {
+      'use strict';
+      var Site = window.Site;
+      $(document).ready(function() {
+        Site.run();
+      });
+    })(document, window, jQuery);
+  </script>
 
 </body>
 
