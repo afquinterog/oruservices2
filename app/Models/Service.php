@@ -245,9 +245,11 @@ class Service extends Model implements Auditable
   public function saveOrUpdate(array $data)
   {
     //Get transition
-    $transition = $data['transition'];
-    unset($data['transition']); 
-
+    if( isset($data['transition']) ){
+      $transition = $data['transition'];
+      unset($data['transition']); 
+    } 
+    
     $data = $this->beforeSave($data);
 
     $service = $this->persist( Service::class, $data);
